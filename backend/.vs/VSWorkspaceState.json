@@ -1,0 +1,16 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\NtkstmsAutoMarket.API",
+    "\\NtkstmsAutoMarket.API\\Controllers",
+    "\\NtkstmsAutoMarket.Application",
+    "\\NtkstmsAutoMarket.Application\\Features",
+    "\\NtkstmsAutoMarket.Application\\Features\\Auth",
+    "\\NtkstmsAutoMarket.Application\\Features\\Auth\\Register",
+    "\\NtkstmsAutoMarket.Application\\Features\\Listings",
+    "\\NtkstmsAutoMarket.Application\\Features\\Listings\\SetPrimaryListingImage",
+    "\\NtkstmsAutoMarket.Application\\Features\\Listings\\UpdateListing"
+  ],
+  "SelectedNode": "\\NtkstmsAutoMarket.API\\Program.cs",
+  "PreviewInSolutionExplorer": false
+}

@@ -1,0 +1,16 @@
+C:\Users\USER-PC\Documents\Code Projects\Micro-Saas-Projects\ntkstms-automarket\backend\NtkstmsAutoMarket.Application\bin\Debug\net9.0\NtkstmsAutoMarket.Application.deps.json
+C:\Users\USER-PC\Documents\Code Projects\Micro-Saas-Projects\ntkstms-automarket\backend\NtkstmsAutoMarket.Application\bin\Debug\net9.0\NtkstmsAutoMarket.Application.dll
+C:\Users\USER-PC\Documents\Code Projects\Micro-Saas-Projects\ntkstms-automarket\backend\NtkstmsAutoMarket.Application\bin\Debug\net9.0\NtkstmsAutoMarket.Application.pdb
+C:\Users\USER-PC\Documents\Code Projects\Micro-Saas-Projects\ntkstms-automarket\backend\NtkstmsAutoMarket.Application\bin\Debug\net9.0\NtkstmsAutoMarket.Domain.dll
+C:\Users\USER-PC\Documents\Code Projects\Micro-Saas-Projects\ntkstms-automarket\backend\NtkstmsAutoMarket.Application\bin\Debug\net9.0\NtkstmsAutoMarket.Domain.pdb
+C:\Users\USER-PC\Documents\Code Projects\Micro-Saas-Projects\ntkstms-automarket\backend\NtkstmsAutoMarket.Application\obj\Debug\net9.0\NtkstmsAutoMarket.Application.csproj.AssemblyReference.cache
+C:\Users\USER-PC\Documents\Code Projects\Micro-Saas-Projects\ntkstms-automarket\backend\NtkstmsAutoMarket.Application\obj\Debug\net9.0\NtkstmsAutoMarket.Application.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\USER-PC\Documents\Code Projects\Micro-Saas-Projects\ntkstms-automarket\backend\NtkstmsAutoMarket.Application\obj\Debug\net9.0\NtkstmsAutoMarket.Application.AssemblyInfoInputs.cache
+C:\Users\USER-PC\Documents\Code Projects\Micro-Saas-Projects\ntkstms-automarket\backend\NtkstmsAutoMarket.Application\obj\Debug\net9.0\NtkstmsAutoMarket.Application.AssemblyInfo.cs
+C:\Users\USER-PC\Documents\Code Projects\Micro-Saas-Projects\ntkstms-automarket\backend\NtkstmsAutoMarket.Application\obj\Debug\net9.0\NtkstmsAutoMarket.Application.csproj.CoreCompileInputs.cache
+C:\Users\USER-PC\Documents\Code Projects\Micro-Saas-Projects\ntkstms-automarket\backend\NtkstmsAutoMarket.Application\obj\Debug\net9.0\NtkstmsAutoMarket.Application.sourcelink.json
+C:\Users\USER-PC\Documents\Code Projects\Micro-Saas-Projects\ntkstms-automarket\backend\NtkstmsAutoMarket.Application\obj\Debug\net9.0\NtkstmsA.FD85B1FD.Up2Date
+C:\Users\USER-PC\Documents\Code Projects\Micro-Saas-Projects\ntkstms-automarket\backend\NtkstmsAutoMarket.Application\obj\Debug\net9.0\NtkstmsAutoMarket.Application.dll
+C:\Users\USER-PC\Documents\Code Projects\Micro-Saas-Projects\ntkstms-automarket\backend\NtkstmsAutoMarket.Application\obj\Debug\net9.0\refint\NtkstmsAutoMarket.Application.dll
+C:\Users\USER-PC\Documents\Code Projects\Micro-Saas-Projects\ntkstms-automarket\backend\NtkstmsAutoMarket.Application\obj\Debug\net9.0\NtkstmsAutoMarket.Application.pdb
+C:\Users\USER-PC\Documents\Code Projects\Micro-Saas-Projects\ntkstms-automarket\backend\NtkstmsAutoMarket.Application\obj\Debug\net9.0\ref\NtkstmsAutoMarket.Application.dll

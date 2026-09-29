@@ -1,0 +1,396 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\USER-PC\\Documents\\Code Projects\\Micro-Saas-Projects\\ntkstms-automarket\\backend\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\USER-PC\\Documents\\Code Projects\\Micro-Saas-Projects\\ntkstms-automarket\\backend\\NtkstmsAutoMarket.API\\Program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:NtkstmsAutoMarket.API\\Program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\USER-PC\\Documents\\Code Projects\\Micro-Saas-Projects\\ntkstms-automarket\\backend\\NtkstmsAutoMarket.API\\Controllers\\AuthController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:NtkstmsAutoMarket.API\\Controllers\\AuthController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\USER-PC\\Documents\\Code Projects\\Micro-Saas-Projects\\ntkstms-automarket\\backend\\NtkstmsAutoMarket.Application\\Features\\Auth\\Register\\RegisterHandler.cs||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:NtkstmsAutoMarket.Application\\Features\\Auth\\Register\\RegisterHandler.cs||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\USER-PC\\Documents\\Code Projects\\Micro-Saas-Projects\\ntkstms-automarket\\backend\\NtkstmsAutoMarket.Application\\Features\\Auth\\Register\\RegisterCommand.cs||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:NtkstmsAutoMarket.Application\\Features\\Auth\\Register\\RegisterCommand.cs||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\USER-PC\\Documents\\Code Projects\\Micro-Saas-Projects\\ntkstms-automarket\\backend\\NtkstmsAutoMarket.Application\\Features\\Auth\\Register\\RegisterResult.cs||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:NtkstmsAutoMarket.Application\\Features\\Auth\\Register\\RegisterResult.cs||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\USER-PC\\Documents\\Code Projects\\Micro-Saas-Projects\\ntkstms-automarket\\backend\\NtkstmsAutoMarket.Application\\Features\\Listings\\GetListings\\GetListingsHandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:NtkstmsAutoMarket.Application\\Features\\Listings\\GetListings\\GetListingsHandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\USER-PC\\Documents\\Code Projects\\Micro-Saas-Projects\\ntkstms-automarket\\backend\\NtkstmsAutoMarket.Application\\Features\\Listings\\GetListings\\GetListingsResponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:NtkstmsAutoMarket.Application\\Features\\Listings\\GetListings\\GetListingsResponse.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\USER-PC\\Documents\\Code Projects\\Micro-Saas-Projects\\ntkstms-automarket\\backend\\NtkstmsAutoMarket.API\\Controllers\\ListingsController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:NtkstmsAutoMarket.API\\Controllers\\ListingsController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\USER-PC\\Documents\\Code Projects\\Micro-Saas-Projects\\ntkstms-automarket\\backend\\NtkstmsAutoMarket.Application\\Features\\Listings\\GetListings\\GetListingsResults.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:NtkstmsAutoMarket.Application\\Features\\Listings\\GetListings\\GetListingsResults.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\USER-PC\\Documents\\Code Projects\\Micro-Saas-Projects\\ntkstms-automarket\\backend\\NtkstmsAutoMarket.Application\\Features\\Listings\\GetListings\\GetListingsQuery.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:NtkstmsAutoMarket.Application\\Features\\Listings\\GetListings\\GetListingsQuery.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\USER-PC\\Documents\\Code Projects\\Micro-Saas-Projects\\ntkstms-automarket\\backend\\NtkstmsAutoMarket.Application\\Features\\Listings\\UpdateListing\\UpdateListingHandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:NtkstmsAutoMarket.Application\\Features\\Listings\\UpdateListing\\UpdateListingHandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\USER-PC\\Documents\\Code Projects\\Micro-Saas-Projects\\ntkstms-automarket\\backend\\NtkstmsAutoMarket.Application\\Features\\Listings\\SetPrimaryListingImage\\SetPrimaryListingImageHandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:NtkstmsAutoMarket.Application\\Features\\Listings\\SetPrimaryListingImage\\SetPrimaryListingImageHandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\USER-PC\\Documents\\Code Projects\\Micro-Saas-Projects\\ntkstms-automarket\\backend\\NtkstmsAutoMarket.Application\\Features\\Listings\\DeleteListingImage\\DeleteListingImageHandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:NtkstmsAutoMarket.Application\\Features\\Listings\\DeleteListingImage\\DeleteListingImageHandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\USER-PC\\Documents\\Code Projects\\Micro-Saas-Projects\\ntkstms-automarket\\backend\\NtkstmsAutoMarket.Application\\Features\\Listings\\MarkListingAsSold\\MarkListingAsSoldHandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:NtkstmsAutoMarket.Application\\Features\\Listings\\MarkListingAsSold\\MarkListingAsSoldHandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\USER-PC\\Documents\\Code Projects\\Micro-Saas-Projects\\ntkstms-automarket\\backend\\NtkstmsAutoMarket.Application\\Features\\Listings\\GetListingImages\\GetListingImagesHandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:NtkstmsAutoMarket.Application\\Features\\Listings\\GetListingImages\\GetListingImagesHandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\USER-PC\\Documents\\Code Projects\\Micro-Saas-Projects\\ntkstms-automarket\\backend\\NtkstmsAutoMarket.Application\\Features\\Listings\\ReserveListing\\ReserveListingHandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:NtkstmsAutoMarket.Application\\Features\\Listings\\ReserveListing\\ReserveListingHandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\USER-PC\\Documents\\Code Projects\\Micro-Saas-Projects\\ntkstms-automarket\\backend\\NtkstmsAutoMarket.Application\\Features\\Listings\\PublishListing\\PublishListingHandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:NtkstmsAutoMarket.Application\\Features\\Listings\\PublishListing\\PublishListingHandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\USER-PC\\Documents\\Code Projects\\Micro-Saas-Projects\\ntkstms-automarket\\backend\\NtkstmsAutoMarket.API\\ExceptionHandling\\GlobalExceptionHandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:NtkstmsAutoMarket.API\\ExceptionHandling\\GlobalExceptionHandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\USER-PC\\Documents\\Code Projects\\Micro-Saas-Projects\\ntkstms-automarket\\backend\\NtkstmsAutoMarket.Domain\\Entities\\Listing.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:NtkstmsAutoMarket.Domain\\Entities\\Listing.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\USER-PC\\Documents\\Code Projects\\Micro-Saas-Projects\\ntkstms-automarket\\backend\\NtkstmsAutoMarket.Application\\Features\\Listings\\MarkListingAsSold\\MarkListingAsSoldResult.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:NtkstmsAutoMarket.Application\\Features\\Listings\\MarkListingAsSold\\MarkListingAsSoldResult.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\USER-PC\\Documents\\Code Projects\\Micro-Saas-Projects\\ntkstms-automarket\\backend\\NtkstmsAutoMarket.Application\\Features\\Listings\\MarkListingAsSold\\MarkListingAsSoldCommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:NtkstmsAutoMarket.Application\\Features\\Listings\\MarkListingAsSold\\MarkListingAsSoldCommand.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\USER-PC\\Documents\\Code Projects\\Micro-Saas-Projects\\ntkstms-automarket\\backend\\NtkstmsAutoMarket.Application\\Features\\Listings\\ReserveListing\\ReserveListingResult.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:NtkstmsAutoMarket.Application\\Features\\Listings\\ReserveListing\\ReserveListingResult.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\USER-PC\\Documents\\Code Projects\\Micro-Saas-Projects\\ntkstms-automarket\\backend\\NtkstmsAutoMarket.API\\Program.cs",
+              "RelativeDocumentMoniker": "NtkstmsAutoMarket.API\\Program.cs",
+              "ToolTip": "C:\\Users\\USER-PC\\Documents\\Code Projects\\Micro-Saas-Projects\\ntkstms-automarket\\backend\\NtkstmsAutoMarket.API\\Program.cs",
+              "RelativeToolTip": "NtkstmsAutoMarket.API\\Program.cs",
+              "ViewState": "AgIAAC0AAAAAAAAAAAAAAEoAAAAKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-22T10:01:27.664Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "ListingsController.cs",
+              "DocumentMoniker": "C:\\Users\\USER-PC\\Documents\\Code Projects\\Micro-Saas-Projects\\ntkstms-automarket\\backend\\NtkstmsAutoMarket.API\\Controllers\\ListingsController.cs",
+              "RelativeDocumentMoniker": "NtkstmsAutoMarket.API\\Controllers\\ListingsController.cs",
+              "ToolTip": "C:\\Users\\USER-PC\\Documents\\Code Projects\\Micro-Saas-Projects\\ntkstms-automarket\\backend\\NtkstmsAutoMarket.API\\Controllers\\ListingsController.cs",
+              "RelativeToolTip": "NtkstmsAutoMarket.API\\Controllers\\ListingsController.cs",
+              "ViewState": "AgIAAFIAAAAAAAAAAAAAAHYAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-08-30T08:55:18.312Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "AuthController.cs",
+              "DocumentMoniker": "C:\\Users\\USER-PC\\Documents\\Code Projects\\Micro-Saas-Projects\\ntkstms-automarket\\backend\\NtkstmsAutoMarket.API\\Controllers\\AuthController.cs",
+              "RelativeDocumentMoniker": "NtkstmsAutoMarket.API\\Controllers\\AuthController.cs",
+              "ToolTip": "C:\\Users\\USER-PC\\Documents\\Code Projects\\Micro-Saas-Projects\\ntkstms-automarket\\backend\\NtkstmsAutoMarket.API\\Controllers\\AuthController.cs",
+              "RelativeToolTip": "NtkstmsAutoMarket.API\\Controllers\\AuthController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB0AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-01T11:18:45.162Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "RegisterHandler.cs",
+              "DocumentMoniker": "C:\\Users\\USER-PC\\Documents\\Code Projects\\Micro-Saas-Projects\\ntkstms-automarket\\backend\\NtkstmsAutoMarket.Application\\Features\\Auth\\Register\\RegisterHandler.cs",
+              "RelativeDocumentMoniker": "NtkstmsAutoMarket.Application\\Features\\Auth\\Register\\RegisterHandler.cs",
+              "ToolTip": "C:\\Users\\USER-PC\\Documents\\Code Projects\\Micro-Saas-Projects\\ntkstms-automarket\\backend\\NtkstmsAutoMarket.Application\\Features\\Auth\\Register\\RegisterHandler.cs",
+              "RelativeToolTip": "NtkstmsAutoMarket.Application\\Features\\Auth\\Register\\RegisterHandler.cs",
+              "ViewState": "AgIAADUAAAAAAAAAAAAIwFAAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-01T11:17:48.453Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "RegisterResult.cs",
+              "DocumentMoniker": "C:\\Users\\USER-PC\\Documents\\Code Projects\\Micro-Saas-Projects\\ntkstms-automarket\\backend\\NtkstmsAutoMarket.Application\\Features\\Auth\\Register\\RegisterResult.cs",
+              "RelativeDocumentMoniker": "NtkstmsAutoMarket.Application\\Features\\Auth\\Register\\RegisterResult.cs",
+              "ToolTip": "C:\\Users\\USER-PC\\Documents\\Code Projects\\Micro-Saas-Projects\\ntkstms-automarket\\backend\\NtkstmsAutoMarket.Application\\Features\\Auth\\Register\\RegisterResult.cs",
+              "RelativeToolTip": "NtkstmsAutoMarket.Application\\Features\\Auth\\Register\\RegisterResult.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAPAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-01T11:17:05.769Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "RegisterCommand.cs",
+              "DocumentMoniker": "C:\\Users\\USER-PC\\Documents\\Code Projects\\Micro-Saas-Projects\\ntkstms-automarket\\backend\\NtkstmsAutoMarket.Application\\Features\\Auth\\Register\\RegisterCommand.cs",
+              "RelativeDocumentMoniker": "NtkstmsAutoMarket.Application\\Features\\Auth\\Register\\RegisterCommand.cs",
+              "ToolTip": "C:\\Users\\USER-PC\\Documents\\Code Projects\\Micro-Saas-Projects\\ntkstms-automarket\\backend\\NtkstmsAutoMarket.Application\\Features\\Auth\\Register\\RegisterCommand.cs",
+              "RelativeToolTip": "NtkstmsAutoMarket.Application\\Features\\Auth\\Register\\RegisterCommand.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAASAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-01T11:16:37.379Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "GetListingsHandler.cs",
+              "DocumentMoniker": "C:\\Users\\USER-PC\\Documents\\Code Projects\\Micro-Saas-Projects\\ntkstms-automarket\\backend\\NtkstmsAutoMarket.Application\\Features\\Listings\\GetListings\\GetListingsHandler.cs",
+              "RelativeDocumentMoniker": "NtkstmsAutoMarket.Application\\Features\\Listings\\GetListings\\GetListingsHandler.cs",
+              "ToolTip": "C:\\Users\\USER-PC\\Documents\\Code Projects\\Micro-Saas-Projects\\ntkstms-automarket\\backend\\NtkstmsAutoMarket.Application\\Features\\Listings\\GetListings\\GetListingsHandler.cs",
+              "RelativeToolTip": "NtkstmsAutoMarket.Application\\Features\\Listings\\GetListings\\GetListingsHandler.cs",
+              "ViewState": "AgIAAJkAAAAAAAAAAAAAALUAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-01T10:00:06.308Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "GetListingsResponse.cs",
+              "DocumentMoniker": "C:\\Users\\USER-PC\\Documents\\Code Projects\\Micro-Saas-Projects\\ntkstms-automarket\\backend\\NtkstmsAutoMarket.Application\\Features\\Listings\\GetListings\\GetListingsResponse.cs",
+              "RelativeDocumentMoniker": "NtkstmsAutoMarket.Application\\Features\\Listings\\GetListings\\GetListingsResponse.cs",
+              "ToolTip": "C:\\Users\\USER-PC\\Documents\\Code Projects\\Micro-Saas-Projects\\ntkstms-automarket\\backend\\NtkstmsAutoMarket.Application\\Features\\Listings\\GetListings\\GetListingsResponse.cs",
+              "RelativeToolTip": "NtkstmsAutoMarket.Application\\Features\\Listings\\GetListings\\GetListingsResponse.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-01T10:32:57.496Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "GetListingsResults.cs",
+              "DocumentMoniker": "C:\\Users\\USER-PC\\Documents\\Code Projects\\Micro-Saas-Projects\\ntkstms-automarket\\backend\\NtkstmsAutoMarket.Application\\Features\\Listings\\GetListings\\GetListingsResults.cs",
+              "RelativeDocumentMoniker": "NtkstmsAutoMarket.Application\\Features\\Listings\\GetListings\\GetListingsResults.cs",
+              "ToolTip": "C:\\Users\\USER-PC\\Documents\\Code Projects\\Micro-Saas-Projects\\ntkstms-automarket\\backend\\NtkstmsAutoMarket.Application\\Features\\Listings\\GetListings\\GetListingsResults.cs",
+              "RelativeToolTip": "NtkstmsAutoMarket.Application\\Features\\Listings\\GetListings\\GetListingsResults.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-01T10:23:48.035Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "GetListingsQuery.cs",
+              "DocumentMoniker": "C:\\Users\\USER-PC\\Documents\\Code Projects\\Micro-Saas-Projects\\ntkstms-automarket\\backend\\NtkstmsAutoMarket.Application\\Features\\Listings\\GetListings\\GetListingsQuery.cs",
+              "RelativeDocumentMoniker": "NtkstmsAutoMarket.Application\\Features\\Listings\\GetListings\\GetListingsQuery.cs",
+              "ToolTip": "C:\\Users\\USER-PC\\Documents\\Code Projects\\Micro-Saas-Projects\\ntkstms-automarket\\backend\\NtkstmsAutoMarket.Application\\Features\\Listings\\GetListings\\GetListingsQuery.cs",
+              "RelativeToolTip": "NtkstmsAutoMarket.Application\\Features\\Listings\\GetListings\\GetListingsQuery.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAdAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-01T10:22:21.278Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "UpdateListingHandler.cs",
+              "DocumentMoniker": "C:\\Users\\USER-PC\\Documents\\Code Projects\\Micro-Saas-Projects\\ntkstms-automarket\\backend\\NtkstmsAutoMarket.Application\\Features\\Listings\\UpdateListing\\UpdateListingHandler.cs",
+              "RelativeDocumentMoniker": "NtkstmsAutoMarket.Application\\Features\\Listings\\UpdateListing\\UpdateListingHandler.cs",
+              "ToolTip": "C:\\Users\\USER-PC\\Documents\\Code Projects\\Micro-Saas-Projects\\ntkstms-automarket\\backend\\NtkstmsAutoMarket.Application\\Features\\Listings\\UpdateListing\\UpdateListingHandler.cs",
+              "RelativeToolTip": "NtkstmsAutoMarket.Application\\Features\\Listings\\UpdateListing\\UpdateListingHandler.cs",
+              "ViewState": "AgIAAHgAAAAAAAAAAAAAAKIAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-01T10:01:50.722Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "SetPrimaryListingImageHandler.cs",
+              "DocumentMoniker": "C:\\Users\\USER-PC\\Documents\\Code Projects\\Micro-Saas-Projects\\ntkstms-automarket\\backend\\NtkstmsAutoMarket.Application\\Features\\Listings\\SetPrimaryListingImage\\SetPrimaryListingImageHandler.cs",
+              "RelativeDocumentMoniker": "NtkstmsAutoMarket.Application\\Features\\Listings\\SetPrimaryListingImage\\SetPrimaryListingImageHandler.cs",
+              "ToolTip": "C:\\Users\\USER-PC\\Documents\\Code Projects\\Micro-Saas-Projects\\ntkstms-automarket\\backend\\NtkstmsAutoMarket.Application\\Features\\Listings\\SetPrimaryListingImage\\SetPrimaryListingImageHandler.cs",
+              "RelativeToolTip": "NtkstmsAutoMarket.Application\\Features\\Listings\\SetPrimaryListingImage\\SetPrimaryListingImageHandler.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACEAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-01T10:00:42.019Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "DeleteListingImageHandler.cs",
+              "DocumentMoniker": "C:\\Users\\USER-PC\\Documents\\Code Projects\\Micro-Saas-Projects\\ntkstms-automarket\\backend\\NtkstmsAutoMarket.Application\\Features\\Listings\\DeleteListingImage\\DeleteListingImageHandler.cs",
+              "RelativeDocumentMoniker": "NtkstmsAutoMarket.Application\\Features\\Listings\\DeleteListingImage\\DeleteListingImageHandler.cs",
+              "ToolTip": "C:\\Users\\USER-PC\\Documents\\Code Projects\\Micro-Saas-Projects\\ntkstms-automarket\\backend\\NtkstmsAutoMarket.Application\\Features\\Listings\\DeleteListingImage\\DeleteListingImageHandler.cs",
+              "RelativeToolTip": "NtkstmsAutoMarket.Application\\Features\\Listings\\DeleteListingImage\\DeleteListingImageHandler.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABkAAAAhAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-01T10:01:19.755Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "MarkListingAsSoldHandler.cs",
+              "DocumentMoniker": "C:\\Users\\USER-PC\\Documents\\Code Projects\\Micro-Saas-Projects\\ntkstms-automarket\\backend\\NtkstmsAutoMarket.Application\\Features\\Listings\\MarkListingAsSold\\MarkListingAsSoldHandler.cs",
+              "RelativeDocumentMoniker": "NtkstmsAutoMarket.Application\\Features\\Listings\\MarkListingAsSold\\MarkListingAsSoldHandler.cs",
+              "ToolTip": "C:\\Users\\USER-PC\\Documents\\Code Projects\\Micro-Saas-Projects\\ntkstms-automarket\\backend\\NtkstmsAutoMarket.Application\\Features\\Listings\\MarkListingAsSold\\MarkListingAsSoldHandler.cs",
+              "RelativeToolTip": "NtkstmsAutoMarket.Application\\Features\\Listings\\MarkListingAsSold\\MarkListingAsSoldHandler.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABgAAAAhAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-01T09:37:52.993Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "GetListingImagesHandler.cs",
+              "DocumentMoniker": "C:\\Users\\USER-PC\\Documents\\Code Projects\\Micro-Saas-Projects\\ntkstms-automarket\\backend\\NtkstmsAutoMarket.Application\\Features\\Listings\\GetListingImages\\GetListingImagesHandler.cs",
+              "RelativeDocumentMoniker": "NtkstmsAutoMarket.Application\\Features\\Listings\\GetListingImages\\GetListingImagesHandler.cs",
+              "ToolTip": "C:\\Users\\USER-PC\\Documents\\Code Projects\\Micro-Saas-Projects\\ntkstms-automarket\\backend\\NtkstmsAutoMarket.Application\\Features\\Listings\\GetListingImages\\GetListingImagesHandler.cs",
+              "RelativeToolTip": "NtkstmsAutoMarket.Application\\Features\\Listings\\GetListingImages\\GetListingImagesHandler.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-01T10:00:16.396Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "ReserveListingHandler.cs",
+              "DocumentMoniker": "C:\\Users\\USER-PC\\Documents\\Code Projects\\Micro-Saas-Projects\\ntkstms-automarket\\backend\\NtkstmsAutoMarket.Application\\Features\\Listings\\ReserveListing\\ReserveListingHandler.cs",
+              "RelativeDocumentMoniker": "NtkstmsAutoMarket.Application\\Features\\Listings\\ReserveListing\\ReserveListingHandler.cs",
+              "ToolTip": "C:\\Users\\USER-PC\\Documents\\Code Projects\\Micro-Saas-Projects\\ntkstms-automarket\\backend\\NtkstmsAutoMarket.Application\\Features\\Listings\\ReserveListing\\ReserveListingHandler.cs",
+              "RelativeToolTip": "NtkstmsAutoMarket.Application\\Features\\Listings\\ReserveListing\\ReserveListingHandler.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABgAAAAhAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-01T09:29:10.557Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "PublishListingHandler.cs",
+              "DocumentMoniker": "C:\\Users\\USER-PC\\Documents\\Code Projects\\Micro-Saas-Projects\\ntkstms-automarket\\backend\\NtkstmsAutoMarket.Application\\Features\\Listings\\PublishListing\\PublishListingHandler.cs",
+              "RelativeDocumentMoniker": "NtkstmsAutoMarket.Application\\Features\\Listings\\PublishListing\\PublishListingHandler.cs",
+              "ToolTip": "C:\\Users\\USER-PC\\Documents\\Code Projects\\Micro-Saas-Projects\\ntkstms-automarket\\backend\\NtkstmsAutoMarket.Application\\Features\\Listings\\PublishListing\\PublishListingHandler.cs",
+              "RelativeToolTip": "NtkstmsAutoMarket.Application\\Features\\Listings\\PublishListing\\PublishListingHandler.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACIAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-01T09:58:04.984Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "GlobalExceptionHandler.cs",
+              "DocumentMoniker": "C:\\Users\\USER-PC\\Documents\\Code Projects\\Micro-Saas-Projects\\ntkstms-automarket\\backend\\NtkstmsAutoMarket.API\\ExceptionHandling\\GlobalExceptionHandler.cs",
+              "RelativeDocumentMoniker": "NtkstmsAutoMarket.API\\ExceptionHandling\\GlobalExceptionHandler.cs",
+              "ToolTip": "C:\\Users\\USER-PC\\Documents\\Code Projects\\Micro-Saas-Projects\\ntkstms-automarket\\backend\\NtkstmsAutoMarket.API\\ExceptionHandling\\GlobalExceptionHandler.cs",
+              "RelativeToolTip": "NtkstmsAutoMarket.API\\ExceptionHandling\\GlobalExceptionHandler.cs",
+              "ViewState": "AgIAAA8AAAAAAAAAAAAIwDwAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-01T09:52:15.118Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "Listing.cs",
+              "DocumentMoniker": "C:\\Users\\USER-PC\\Documents\\Code Projects\\Micro-Saas-Projects\\ntkstms-automarket\\backend\\NtkstmsAutoMarket.Domain\\Entities\\Listing.cs",
+              "RelativeDocumentMoniker": "NtkstmsAutoMarket.Domain\\Entities\\Listing.cs",
+              "ToolTip": "C:\\Users\\USER-PC\\Documents\\Code Projects\\Micro-Saas-Projects\\ntkstms-automarket\\backend\\NtkstmsAutoMarket.Domain\\Entities\\Listing.cs",
+              "RelativeToolTip": "NtkstmsAutoMarket.Domain\\Entities\\Listing.cs",
+              "ViewState": "AgIAAFoAAAAAAAAAAAAIwHsAAAA2AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-01T09:43:10.836Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "MarkListingAsSoldResult.cs",
+              "DocumentMoniker": "C:\\Users\\USER-PC\\Documents\\Code Projects\\Micro-Saas-Projects\\ntkstms-automarket\\backend\\NtkstmsAutoMarket.Application\\Features\\Listings\\MarkListingAsSold\\MarkListingAsSoldResult.cs",
+              "RelativeDocumentMoniker": "NtkstmsAutoMarket.Application\\Features\\Listings\\MarkListingAsSold\\MarkListingAsSoldResult.cs",
+              "ToolTip": "C:\\Users\\USER-PC\\Documents\\Code Projects\\Micro-Saas-Projects\\ntkstms-automarket\\backend\\NtkstmsAutoMarket.Application\\Features\\Listings\\MarkListingAsSold\\MarkListingAsSoldResult.cs",
+              "RelativeToolTip": "NtkstmsAutoMarket.Application\\Features\\Listings\\MarkListingAsSold\\MarkListingAsSoldResult.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAaAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-01T09:37:26.881Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "MarkListingAsSoldCommand.cs",
+              "DocumentMoniker": "C:\\Users\\USER-PC\\Documents\\Code Projects\\Micro-Saas-Projects\\ntkstms-automarket\\backend\\NtkstmsAutoMarket.Application\\Features\\Listings\\MarkListingAsSold\\MarkListingAsSoldCommand.cs",
+              "RelativeDocumentMoniker": "NtkstmsAutoMarket.Application\\Features\\Listings\\MarkListingAsSold\\MarkListingAsSoldCommand.cs",
+              "ToolTip": "C:\\Users\\USER-PC\\Documents\\Code Projects\\Micro-Saas-Projects\\ntkstms-automarket\\backend\\NtkstmsAutoMarket.Application\\Features\\Listings\\MarkListingAsSold\\MarkListingAsSoldCommand.cs",
+              "RelativeToolTip": "NtkstmsAutoMarket.Application\\Features\\Listings\\MarkListingAsSold\\MarkListingAsSoldCommand.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAtAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-01T09:37:03.218Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "ReserveListingResult.cs",
+              "DocumentMoniker": "C:\\Users\\USER-PC\\Documents\\Code Projects\\Micro-Saas-Projects\\ntkstms-automarket\\backend\\NtkstmsAutoMarket.Application\\Features\\Listings\\ReserveListing\\ReserveListingResult.cs",
+              "RelativeDocumentMoniker": "NtkstmsAutoMarket.Application\\Features\\Listings\\ReserveListing\\ReserveListingResult.cs",
+              "ToolTip": "C:\\Users\\USER-PC\\Documents\\Code Projects\\Micro-Saas-Projects\\ntkstms-automarket\\backend\\NtkstmsAutoMarket.Application\\Features\\Listings\\ReserveListing\\ReserveListingResult.cs",
+              "RelativeToolTip": "NtkstmsAutoMarket.Application\\Features\\Listings\\ReserveListing\\ReserveListingResult.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAaAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-01T09:28:45.445Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

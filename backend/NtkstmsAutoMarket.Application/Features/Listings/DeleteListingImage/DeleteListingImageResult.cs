@@ -1,0 +1,3 @@
+namespace NtkstmsAutoMarket.Application.Features.Listings.DeleteListingImage;
+
+public record DeleteListingImageResult(Guid ListingImageId);

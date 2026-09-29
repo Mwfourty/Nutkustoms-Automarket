@@ -1,0 +1,12 @@
+C:\Users\USER-PC\Documents\Code Projects\Micro-Saas-Projects\ntkstms-automarket\backend\NtkstmsAutoMarket.Domain\bin\Debug\net9.0\NtkstmsAutoMarket.Domain.deps.json
+C:\Users\USER-PC\Documents\Code Projects\Micro-Saas-Projects\ntkstms-automarket\backend\NtkstmsAutoMarket.Domain\bin\Debug\net9.0\NtkstmsAutoMarket.Domain.dll
+C:\Users\USER-PC\Documents\Code Projects\Micro-Saas-Projects\ntkstms-automarket\backend\NtkstmsAutoMarket.Domain\bin\Debug\net9.0\NtkstmsAutoMarket.Domain.pdb
+C:\Users\USER-PC\Documents\Code Projects\Micro-Saas-Projects\ntkstms-automarket\backend\NtkstmsAutoMarket.Domain\obj\Debug\net9.0\NtkstmsAutoMarket.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\USER-PC\Documents\Code Projects\Micro-Saas-Projects\ntkstms-automarket\backend\NtkstmsAutoMarket.Domain\obj\Debug\net9.0\NtkstmsAutoMarket.Domain.AssemblyInfoInputs.cache
+C:\Users\USER-PC\Documents\Code Projects\Micro-Saas-Projects\ntkstms-automarket\backend\NtkstmsAutoMarket.Domain\obj\Debug\net9.0\NtkstmsAutoMarket.Domain.AssemblyInfo.cs
+C:\Users\USER-PC\Documents\Code Projects\Micro-Saas-Projects\ntkstms-automarket\backend\NtkstmsAutoMarket.Domain\obj\Debug\net9.0\NtkstmsAutoMarket.Domain.csproj.CoreCompileInputs.cache
+C:\Users\USER-PC\Documents\Code Projects\Micro-Saas-Projects\ntkstms-automarket\backend\NtkstmsAutoMarket.Domain\obj\Debug\net9.0\NtkstmsAutoMarket.Domain.sourcelink.json
+C:\Users\USER-PC\Documents\Code Projects\Micro-Saas-Projects\ntkstms-automarket\backend\NtkstmsAutoMarket.Domain\obj\Debug\net9.0\NtkstmsAutoMarket.Domain.dll
+C:\Users\USER-PC\Documents\Code Projects\Micro-Saas-Projects\ntkstms-automarket\backend\NtkstmsAutoMarket.Domain\obj\Debug\net9.0\refint\NtkstmsAutoMarket.Domain.dll
+C:\Users\USER-PC\Documents\Code Projects\Micro-Saas-Projects\ntkstms-automarket\backend\NtkstmsAutoMarket.Domain\obj\Debug\net9.0\NtkstmsAutoMarket.Domain.pdb
+C:\Users\USER-PC\Documents\Code Projects\Micro-Saas-Projects\ntkstms-automarket\backend\NtkstmsAutoMarket.Domain\obj\Debug\net9.0\ref\NtkstmsAutoMarket.Domain.dll

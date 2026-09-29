@@ -1,0 +1,3 @@
+namespace NtkstmsAutoMarket.Application.Features.Listings.Documents.DeleteListingDocument;
+
+public record DeleteListingDocumentResult(Guid DocumentId);

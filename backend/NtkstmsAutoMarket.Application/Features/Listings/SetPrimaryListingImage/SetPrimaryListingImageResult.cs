@@ -1,0 +1,3 @@
+namespace NtkstmsAutoMarket.Application.Features.Listings.SetPrimaryListingImage;
+
+public record SetPrimaryListingImageResult(Guid ListingImageId);
