@@ -13,7 +13,8 @@
   transform: translate3d(0, 0, 0.01px);
   display: grid;
   border: 1px solid rgb(255 255 255 / 10%);
-  background: var(--card-bg, #120f17);
+  background: var(--card-surface, var(--card-bg, #120f17));
+  backdrop-filter: blur(16px);
   overflow: visible;
   box-shadow:
     rgba(0, 0, 0, 0.4) 0px 1px 2px,

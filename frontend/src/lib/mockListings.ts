@@ -1,6 +1,13 @@
 import type { StoreListing } from '../types/listing';
 
-const BASE_LISTINGS: Omit<StoreListing, 'id'>[] = [
+export const LOCATIONS = ['Johannesburg', 'Cape Town', 'Durban', 'Pretoria', 'Gqeberha'] as const;
+
+type BaseListing = Omit<
+  StoreListing,
+  'id' | 'location' | 'verifiedHistory' | 'serviceRecords' | 'sellerRating' | 'listedDaysAgo'
+>;
+
+const BASE_LISTINGS: BaseListing[] = [
   { title: 'Toyota Corolla GLi', year: 2019, transmission: 'Manual', mileageKm: 84000, price: 189900, category: 'Cars' },
   { title: 'VW Polo TSI', year: 2021, transmission: 'Automatic', mileageKm: 41200, price: 259500, category: 'Cars' },
   { title: 'BMW E36 328i', year: 1998, transmission: 'Manual', mileageKm: 212000, price: 145000, category: 'Cars' },
@@ -38,9 +45,15 @@ export const mockListings: StoreListing[] = Array.from(
   { length: 48 },
   (_, index) => {
     const base = BASE_LISTINGS[index % BASE_LISTINGS.length];
+    const verifiedHistory = index % 3 !== 1;
     return {
       ...base,
       id: `${index + 1}`,
+      location: LOCATIONS[index % LOCATIONS.length],
+      verifiedHistory,
+      serviceRecords: verifiedHistory ? 2 + (index % 6) : 0,
+      sellerRating: 3.5 + (index % 4) * 0.5,
+      listedDaysAgo: (index * 7) % 30,
     };
   },
 );

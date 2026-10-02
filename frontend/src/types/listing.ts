@@ -7,4 +7,9 @@ export interface StoreListing {
   price: number;
   imageUrl?: string;
   category: 'Cars' | 'Parts' | 'Wheels' | 'Engines';
+  location: string;
+  verifiedHistory: boolean;
+  serviceRecords: number;
+  sellerRating: number;
+  listedDaysAgo: number;
 }

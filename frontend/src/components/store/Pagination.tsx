@@ -21,7 +21,7 @@ const Pagination = ({ page, totalPages, onChange }: PaginationProps) => {
         type="button"
         aria-label="Previous page"
         onClick={() => onChange(Math.max(1, page - 1))}
-        className="flex h-9 w-9 items-center justify-center rounded-full border border-white/10 bg-white/[0.03] text-neutral-300 transition-colors hover:border-white/25"
+        className="flex h-9 w-9 items-center justify-center rounded-lg border border-white/10 bg-white/[0.03] text-neutral-300 transition-colors hover:border-white/25 light:border-black/10 light:bg-black/[0.03] light:text-neutral-600 light:hover:border-black/25"
       >
         <ChevronLeft size={16} />
       </button>
@@ -31,10 +31,10 @@ const Pagination = ({ page, totalPages, onChange }: PaginationProps) => {
           key={p}
           type="button"
           onClick={() => onChange(p)}
-          className={`flex h-9 w-9 items-center justify-center rounded-full font-display text-sm transition-colors ${
+          className={`flex h-9 w-9 items-center justify-center rounded-lg font-display text-sm transition-colors ${
             p === page
-              ? 'bg-white text-black'
-              : 'border border-white/10 bg-white/[0.03] text-neutral-300 hover:border-white/25'
+              ? 'bg-white text-black light:bg-neutral-900 light:text-white'
+              : 'border border-white/10 bg-white/[0.03] text-neutral-300 hover:border-white/25 light:border-black/10 light:bg-black/[0.03] light:text-neutral-600 light:hover:border-black/25'
           }`}
         >
           {p}
@@ -47,10 +47,10 @@ const Pagination = ({ page, totalPages, onChange }: PaginationProps) => {
           <button
             type="button"
             onClick={() => onChange(totalPages)}
-            className={`flex h-9 w-9 items-center justify-center rounded-full font-display text-sm transition-colors ${
+            className={`flex h-9 w-9 items-center justify-center rounded-lg font-display text-sm transition-colors ${
               page === totalPages
-                ? 'bg-white text-black'
-                : 'border border-white/10 bg-white/[0.03] text-neutral-300 hover:border-white/25'
+                ? 'bg-white text-black light:bg-neutral-900 light:text-white'
+                : 'border border-white/10 bg-white/[0.03] text-neutral-300 hover:border-white/25 light:border-black/10 light:bg-black/[0.03] light:text-neutral-600 light:hover:border-black/25'
             }`}
           >
             {totalPages}
@@ -62,7 +62,7 @@ const Pagination = ({ page, totalPages, onChange }: PaginationProps) => {
         type="button"
         aria-label="Next page"
         onClick={() => onChange(Math.min(totalPages, page + 1))}
-        className="flex h-9 w-9 items-center justify-center rounded-full border border-white/10 bg-white/[0.03] text-neutral-300 transition-colors hover:border-white/25"
+        className="flex h-9 w-9 items-center justify-center rounded-lg border border-white/10 bg-white/[0.03] text-neutral-300 transition-colors hover:border-white/25 light:border-black/10 light:bg-black/[0.03] light:text-neutral-600 light:hover:border-black/25"
       >
         <ChevronRight size={16} />
       </button>

@@ -1,7 +1,16 @@
 @import "tailwindcss";
 
+@font-face {
+  font-family: "Benn";
+  src: url("./assets/fonts/Benn-FREE.otf") format("opentype");
+  font-display: swap;
+}
+
+@custom-variant light (&:where(.light, .light *));
+
 @theme {
   --font-display: "Jost", sans-serif;
+  --font-brand: "Benn", "Jost", sans-serif;
   --font-sans: "Poppins", system-ui, sans-serif;
 
   --color-oled: #000000;
@@ -9,6 +18,7 @@
   --color-glass: rgba(255, 255, 255, 0.03);
   --color-glass-border: rgba(255, 255, 255, 0.08);
   --color-accent: #c084fc;
+  --radius-3xl: 0.75rem;
 }
 
 html,
@@ -22,6 +32,14 @@ body {
   color: #f5f5f5;
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
+  transition:
+    background-color 0.25s ease,
+    color 0.25s ease;
+}
+
+.light body {
+  background: #f7f5f0;
+  color: #171310;
 }
 
 * {
@@ -30,6 +48,10 @@ body {
 
 ::selection {
   background: rgba(56, 189, 248, 0.35);
+}
+
+.light ::selection {
+  background: rgba(217, 119, 6, 0.2);
 }
 
 ::-webkit-scrollbar {
@@ -48,4 +70,12 @@ body {
 
 ::-webkit-scrollbar-thumb:hover {
   background: rgba(255, 255, 255, 0.2);
+}
+
+.light ::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.15);
+}
+
+.light ::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.25);
 }

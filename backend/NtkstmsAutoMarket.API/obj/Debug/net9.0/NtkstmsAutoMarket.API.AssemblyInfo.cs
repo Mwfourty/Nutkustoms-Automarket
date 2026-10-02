@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("NtkstmsAutoMarket.API")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ed39867ca683d0759aa3189c9a109f948bf2d67e")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5c4a2efea47b9dcf1389419363b1e4ce5afd41a7")]
 [assembly: System.Reflection.AssemblyProductAttribute("NtkstmsAutoMarket.API")]
 [assembly: System.Reflection.AssemblyTitleAttribute("NtkstmsAutoMarket.API")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

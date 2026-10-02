@@ -1,4 +1,4 @@
-import { Search, SlidersHorizontal } from 'lucide-react';
+import { Search } from 'lucide-react';
 
 interface SearchBarProps {
   value: string;
@@ -8,23 +8,16 @@ interface SearchBarProps {
 const SearchBar = ({ value, onChange }: SearchBarProps) => {
   return (
     <div className="flex items-center gap-3">
-      <div className="flex flex-1 items-center gap-3 rounded-full border border-white/10 bg-white/[0.03] px-5 py-3 backdrop-blur-xl transition-colors focus-within:border-amber-200/40">
+      <div className="flex flex-1 items-center gap-3 rounded-xl border border-white/10 bg-white/[0.03] px-5 py-4 backdrop-blur-xl transition-colors focus-within:border-amber-200/40 light:border-black/10 light:bg-black/[0.03]">
         <Search size={18} className="text-neutral-500" />
         <input
           type="text"
           value={value}
           onChange={(event) => onChange(event.target.value)}
           placeholder="Search by make, model, or keyword"
-          className="w-full bg-transparent text-sm text-neutral-100 placeholder:text-neutral-500 focus:outline-none"
+          className="w-full bg-transparent text-sm text-neutral-100 placeholder:text-neutral-500 focus:outline-none light:text-neutral-900"
         />
       </div>
-      <button
-        type="button"
-        className="flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-5 py-3 text-sm text-neutral-200 backdrop-blur-xl transition-colors hover:border-amber-200/40 hover:bg-white/[0.06]"
-      >
-        <SlidersHorizontal size={16} />
-        Filters
-      </button>
     </div>
   );
 };

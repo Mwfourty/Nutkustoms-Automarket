@@ -14,6 +14,7 @@ interface BorderGlowProps {
   edgeSensitivity?: number;
   glowColor?: string;
   backgroundColor?: string;
+  surfaceColor?: string;
   borderRadius?: number;
   glowRadius?: number;
   glowIntensity?: number;
@@ -99,6 +100,7 @@ const BorderGlow = ({
   edgeSensitivity = 30,
   glowColor = '40 80 80',
   backgroundColor = '#120F17',
+  surfaceColor,
   borderRadius = 28,
   glowRadius = 40,
   glowIntensity = 1.0,
@@ -171,6 +173,7 @@ const BorderGlow = ({
 
   const style = {
     '--card-bg': backgroundColor,
+    ...(surfaceColor ? { '--card-surface': surfaceColor } : {}),
     '--edge-sensitivity': edgeSensitivity,
     '--border-radius': `${borderRadius}px`,
     '--glow-padding': `${glowRadius}px`,
