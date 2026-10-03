@@ -10,10 +10,11 @@
 using System;
 using System.Reflection;
 
+[assembly: Microsoft.Extensions.Configuration.UserSecrets.UserSecretsIdAttribute("ntkstms-automarket-api-4d764ea6-07e1-46c6-a1ba-a4ab61d629ab")]
 [assembly: System.Reflection.AssemblyCompanyAttribute("NtkstmsAutoMarket.API")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5c4a2efea47b9dcf1389419363b1e4ce5afd41a7")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+115e04fff99fd1320206a81d309491de76b4aa3b")]
 [assembly: System.Reflection.AssemblyProductAttribute("NtkstmsAutoMarket.API")]
 [assembly: System.Reflection.AssemblyTitleAttribute("NtkstmsAutoMarket.API")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

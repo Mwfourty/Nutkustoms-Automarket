@@ -74,9 +74,17 @@ builder.Services.AddApplication();
 
 builder.Services.AddControllers();
 
+var connectionString = builder.Configuration
+    .GetConnectionString("DefaultConnection");
+
+if (string.IsNullOrWhiteSpace(connectionString))
+{
+    throw new InvalidOperationException(
+        "ConnectionStrings:DefaultConnection must be configured.");
+}
+
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
-    options.UseNpgsql(
-        builder.Configuration.GetConnectionString("DefaultConnection")));
+    options.UseNpgsql(connectionString));
 
 builder.Services.AddScoped<IApplicationDbContext>(
     provider => provider.GetRequiredService<ApplicationDbContext>());
@@ -90,6 +98,12 @@ var jwtSettings = builder.Configuration
     .Get<JwtSettings>()
     ?? throw new InvalidOperationException(
         "JWT settings are missing.");
+
+if (Encoding.UTF8.GetByteCount(jwtSettings.Key) < 32)
+{
+    throw new InvalidOperationException(
+        "Jwt:Key must be configured with at least 32 bytes.");
+}
 
 builder.Services.AddAuthentication(
     JwtBearerDefaults.AuthenticationScheme)

@@ -20,11 +20,11 @@ export interface Profile {
 
 export const myProfile: Profile = {
   id: 'me',
-  name: 'Jordan Smith',
+  name: 'Musa Mndau',
   rating: 4.7,
   reviews: 17,
   memberSince: 'Jan 2023',
-  location: 'Johannesburg',
+  location: 'Pretoria',
   listingsSold: 6,
   carsInGarage: 3,
   history: [
