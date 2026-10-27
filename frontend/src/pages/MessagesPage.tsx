@@ -3,7 +3,6 @@ import { useEffect, useMemo, useRef, useState, type FormEvent } from 'react';
 import { Link } from 'react-router-dom';
 import LightRays from '../components/effects/LightRays';
 import Navbar from '../components/store/Navbar';
-import Footer from '../components/store/Footer';
 import { useTheme } from '../context/ThemeContext';
 import { mockConversations, type Conversation } from '../lib/mockMessages';
 
@@ -185,8 +184,6 @@ const MessagesPage = () => {
             </form>
           </section>
         </main>
-
-        <Footer />
       </div>
     </div>
   );

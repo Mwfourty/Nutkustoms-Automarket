@@ -6,6 +6,7 @@ import Navbar from '../components/store/Navbar';
 import Footer from '../components/store/Footer';
 import StepSidebar from '../components/sell/StepSidebar';
 import PhotoUploader from '../components/sell/PhotoUploader';
+import { MAKES } from '../components/sell/makes';
 import {
   CheckboxField,
   SelectField,
@@ -15,7 +16,6 @@ import {
 import {
   CONDITIONS,
   DOCUMENTS,
-  MAKES,
   SERVICE_HISTORY,
   STEPS,
   TRANSMISSIONS,

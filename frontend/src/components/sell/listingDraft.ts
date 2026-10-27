@@ -1,4 +1,4 @@
-export const MAKES = ['BMW', 'Toyota', 'Honda', 'Nissan', 'Volkswagen', 'Mazda', 'Subaru', 'Other'] as const;
+import { DEFAULT_MAKE } from './makes';
 export const TRANSMISSIONS = ['Manual', 'Automatic'] as const;
 export const CONDITIONS = ['Excellent', 'Good', 'Fair', 'Project'] as const;
 export const SERVICE_HISTORY = ['Full service history', 'Partial service history', 'No service history'] as const;
@@ -27,7 +27,7 @@ export interface ListingDraft {
 }
 
 export const emptyDraft: ListingDraft = {
-  make: MAKES[0],
+  make: DEFAULT_MAKE,
   model: '',
   year: YEARS[0],
   transmission: TRANSMISSIONS[0],
