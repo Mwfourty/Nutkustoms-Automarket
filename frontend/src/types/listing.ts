@@ -12,4 +12,6 @@ export interface StoreListing {
   serviceRecords: number;
   sellerRating: number;
   listedDaysAgo: number;
+  condition?: 'New' | 'Used' | 'Refurbished';
+  fitment?: string; // e.g. 'BMW E30' or 'Universal'
 }

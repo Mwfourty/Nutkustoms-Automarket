@@ -41,6 +41,9 @@ const BASE_LISTINGS: BaseListing[] = [
   { title: 'Exhaust Header Set', year: 2020, transmission: 'Manual', mileageKm: 0, price: 5600, category: 'Parts' },
 ];
 
+const FITMENT = ['BMW E30', 'VW Golf Mk3', 'Universal', 'Honda Civic', 'Toyota Hilux'];
+const CONDITIONS = ['New', 'Used', 'Refurbished'] as const;
+
 export const mockListings: StoreListing[] = Array.from(
   { length: 48 },
   (_, index) => {
@@ -52,6 +55,8 @@ export const mockListings: StoreListing[] = Array.from(
       location: LOCATIONS[index % LOCATIONS.length],
       verifiedHistory,
       serviceRecords: verifiedHistory ? 2 + (index % 6) : 0,
+      condition: CONDITIONS[index % CONDITIONS.length],
+      fitment: FITMENT[index % FITMENT.length],
       sellerRating: 3.5 + (index % 4) * 0.5,
       listedDaysAgo: (index * 7) % 30,
     };
