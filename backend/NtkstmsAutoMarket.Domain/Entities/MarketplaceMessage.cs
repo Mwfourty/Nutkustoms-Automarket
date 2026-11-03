@@ -54,4 +54,12 @@ public class MarketplaceMessage : BaseEntity
         ReadAt = DateTime.UtcNow;
         MarkAsUpdated();
     }
+
+    public void MarkAsRead(DateTime readAt)
+    {
+        if (ReadAt.HasValue)
+            return;
+
+        ReadAt = readAt;
+    }
 }

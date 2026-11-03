@@ -1,0 +1,3 @@
+namespace NtkstmsAutoMarket.Application.Features.Messaging.MarkConversationAsRead;
+
+public sealed record MarkConversationAsReadCommand(Guid ConversationId);

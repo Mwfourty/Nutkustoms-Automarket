@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("NtkstmsAutoMarket.Domain")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+69ebcf5d5e19781b126544f0b84227713e17f621")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a8edbbf2e18ad295199685fee7b40e161d7555b7")]
 [assembly: System.Reflection.AssemblyProductAttribute("NtkstmsAutoMarket.Domain")]
 [assembly: System.Reflection.AssemblyTitleAttribute("NtkstmsAutoMarket.Domain")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

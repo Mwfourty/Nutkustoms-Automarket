@@ -34,9 +34,14 @@ using NtkstmsAutoMarket.Application.Features.Listings.MarkListingAsSold;
 using NtkstmsAutoMarket.API.ExceptionHandling;
 
 using NtkstmsAutoMarket.Application.Features.Auth.Login;
+using NtkstmsAutoMarket.Application.Features.Auth.Register;
+
 using NtkstmsAutoMarket.Application.Features.Messaging.StartConversation;
 using NtkstmsAutoMarket.Application.Features.Messaging.GetConversations;
-using NtkstmsAutoMarket.Application.Features.Auth.Register;
+using NtkstmsAutoMarket.Application.Features.Messaging.GetConversationMessages;
+using NtkstmsAutoMarket.Application.Features.Messaging.MarkConversationAsRead;
+using NtkstmsAutoMarket.Application.Features.Messaging.SendMessage;
+
 using NtkstmsAutoMarket.Application.Features.Garage.CreateGarageVehicle;
 using NtkstmsAutoMarket.Application.Features.Garage.DeleteGarageVehicle;
 using NtkstmsAutoMarket.Application.Features.Garage.Images.AddGarageVehicleImage;
@@ -58,10 +63,12 @@ using NtkstmsAutoMarket.Application.Features.Garage.UpdateGarageVehicleVisibilit
 using NtkstmsAutoMarket.Application.Features.Garage.ServiceRecords.DeleteServiceRecord;
 using NtkstmsAutoMarket.Application.Features.Garage.ServiceRecords.GetServiceRecords;
 using NtkstmsAutoMarket.Application.Features.Garage.ServiceRecords.UpdateServiceRecord;
+
 using NtkstmsAutoMarket.Application.Features.SellerReviews.CreateSellerReview;
 using NtkstmsAutoMarket.Application.Features.SellerReviews.DeleteSellerReview;
 using NtkstmsAutoMarket.Application.Features.SellerReviews.GetSellerReviews;
 using NtkstmsAutoMarket.Application.Features.SellerReviews.UpdateSellerReview;
+
 using NtkstmsAutoMarket.Application.Features.Users.GetMyProfile;
 using NtkstmsAutoMarket.Application.Features.Users.GetPublicProfile;
 using NtkstmsAutoMarket.Application.Features.Users.UpdateMyProfile;
@@ -163,6 +170,9 @@ builder.Services.AddScoped<RegisterHandler>();
 builder.Services.AddScoped<LoginHandler>();
 builder.Services.AddScoped<StartConversationHandler>();
 builder.Services.AddScoped<GetConversationsHandler>();
+builder.Services.AddScoped<GetConversationMessagesHandler>();
+builder.Services.AddScoped<MarkConversationAsReadHandler>();
+builder.Services.AddScoped<SendMessageHandler>();
 builder.Services.AddScoped<GetMyProfileHandler>();
 builder.Services.AddScoped<GetPublicProfileHandler>();
 builder.Services.AddScoped<UpdateMyProfileHandler>();

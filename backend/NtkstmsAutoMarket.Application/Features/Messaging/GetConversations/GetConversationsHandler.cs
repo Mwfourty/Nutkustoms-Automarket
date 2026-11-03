@@ -16,20 +16,41 @@ public class GetConversationsHandler
         _currentUser = currentUser;
     }
 
-    public async Task<List<GetConversationItemResponse>> Handle(
+    public async Task<GetConversationsPageResponse> Handle(
         GetConversationsQuery query,
         CancellationToken cancellationToken = default)
     {
         var currentUserId = _currentUser.UserId;
 
-        var conversations =
-            await _context.MarketplaceConversations
+        // Get conversations belonging to the current user.
+        var conversationsQuery =
+            _context.MarketplaceConversations
                 .AsNoTracking()
                 .Where(conversation =>
                     conversation.BuyerId == currentUserId ||
-                    conversation.SellerId == currentUserId)
+                    conversation.SellerId == currentUserId);
+
+        // Count all conversations before pagination.
+        var totalCount = await conversationsQuery.CountAsync(
+            cancellationToken);
+
+        // Calculate pagination information.
+        var totalPages = (int)Math.Ceiling(
+            (double)totalCount / query.PageSize);
+
+        var skip = (int)Math.Min(
+            ((long)query.Page - 1) * query.PageSize,
+            int.MaxValue);
+
+        // Retrieve only the conversations for this page.
+        var conversations =
+            await conversationsQuery
                 .OrderByDescending(conversation =>
                     conversation.LastMessageAt)
+                .ThenByDescending(conversation =>
+                    conversation.Id)
+                .Skip(skip)
+                .Take(query.PageSize)
                 .Select(conversation =>
                     new GetConversationItemResponse
                     {
@@ -85,6 +106,8 @@ public class GetConversationsHandler
                                     conversation.Id)
                                 .OrderByDescending(message =>
                                     message.CreatedAt)
+                                .ThenByDescending(message =>
+                                    message.Id)
                                 .Select(message =>
                                     new ConversationLatestMessageResponse
                                     {
@@ -108,6 +131,15 @@ public class GetConversationsHandler
                     })
                 .ToListAsync(cancellationToken);
 
-        return conversations;
+        return new GetConversationsPageResponse
+        {
+            Conversations = conversations,
+            Page = query.Page,
+            PageSize = query.PageSize,
+            TotalCount = totalCount,
+            TotalPages = totalPages,
+            HasNextPage = query.Page < totalPages,
+            HasPreviousPage = query.Page > 1
+        };
     }
 }
