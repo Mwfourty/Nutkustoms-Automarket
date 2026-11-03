@@ -26,7 +26,7 @@ const BASE_LISTINGS: BaseListing[] = [
   { title: 'Toyota Supra Mk4', year: 1997, transmission: 'Manual', mileageKm: 132000, price: 890000, category: 'Cars' },
   { title: 'K24 Engine Swap', year: 2016, transmission: 'Manual', mileageKm: 45000, price: 32000, category: 'Engines' },
   { title: 'B18C Type R Engine', year: 2000, transmission: 'Manual', mileageKm: 71000, price: 28500, category: 'Engines' },
-  { title: 'LS3 6.2L V8', year: 2014, transmission: 'Automatic', mileageKm: 51000, price: 65000, category: 'Engines' },
+  { title: 'LS3 6.2L V8', year: 2014, transmission: 'Automatic', mileageKm: 0, price: 65000, category: 'Engines' },
   { title: '2JZ-GTE Twin Turbo', year: 1998, transmission: 'Manual', mileageKm: 102000, price: 78000, category: 'Engines' },
   { title: 'RB26DETT Engine', year: 1999, transmission: 'Manual', mileageKm: 89000, price: 92000, category: 'Engines' },
   { title: '18" BBS RS Wheels', year: 2020, transmission: 'Manual', mileageKm: 0, price: 15500, category: 'Wheels' },

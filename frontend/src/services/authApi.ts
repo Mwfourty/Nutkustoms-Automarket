@@ -1,3 +1,5 @@
+import { apiRequest } from './apiClient';
+
 export interface RegisterPayload {
   firstName: string;
   lastName: string;
@@ -38,6 +40,16 @@ async function post<T>(path: string, body: unknown): Promise<T> {
   }
   return res.json() as Promise<T>;
 }
+
+export interface CurrentUser {
+  userId: string;
+  username: string;
+  email: string;
+  role: string | number;
+}
+
+export const getCurrentUser = () =>
+  apiRequest<CurrentUser>('/Auth/me');
 
 export const register = (payload: RegisterPayload) => post('register', payload);
 

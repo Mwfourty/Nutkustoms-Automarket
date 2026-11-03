@@ -1,9 +1,6 @@
 import { ArrowLeft, ArrowRight, CheckCircle2 } from 'lucide-react';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import LightRays from '../components/effects/LightRays';
-import Navbar from '../components/store/Navbar';
-import Footer from '../components/store/Footer';
 import StepSidebar from '../components/sell/StepSidebar';
 import PhotoUploader from '../components/sell/PhotoUploader';
 import { MAKES } from '../components/sell/makes';
@@ -24,10 +21,8 @@ import {
   isStepValid,
   type ListingDraft,
 } from '../components/sell/listingDraft';
-import { useTheme } from '../context/ThemeContext';
 
 const SellPage = () => {
-  const { theme } = useTheme();
   const [step, setStep] = useState(0);
   const [draft, setDraft] = useState<ListingDraft>(emptyDraft);
   const [published, setPublished] = useState(false);
@@ -105,25 +100,7 @@ const SellPage = () => {
   };
 
   return (
-    <div className="relative min-h-screen bg-black transition-colors light:bg-[#f7f5f0]">
-      <div className="pointer-events-none fixed inset-0 h-screen">
-        <LightRays
-          raysOrigin="top-center"
-          raysColor="#fff3c4"
-          raysSpeed={0.6}
-          lightSpread={0.7}
-          rayLength={1.8}
-          followMouse
-          mouseInfluence={0.08}
-          fadeDistance={1.1}
-          saturation={0.9}
-          lightMode={theme === 'light'}
-        />
-      </div>
-
-      <div className="relative z-10 flex min-h-screen flex-col">
-        <Navbar />
-
+    <>
         <main className="mx-auto flex w-full max-w-[1700px] flex-1 flex-col gap-6 px-4 py-8 sm:px-6 lg:flex-row lg:px-10">
           <StepSidebar current={step} onSelect={setStep} />
 
@@ -186,10 +163,7 @@ const SellPage = () => {
             )}
           </section>
         </main>
-
-        <Footer />
-      </div>
-    </div>
+    </>
   );
 };
 

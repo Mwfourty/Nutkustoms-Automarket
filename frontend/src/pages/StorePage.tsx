@@ -1,7 +1,5 @@
 import { Search as SearchIcon, ShieldCheck, Sparkles } from 'lucide-react';
 import { useMemo, useState } from 'react';
-import LightRays from '../components/effects/LightRays';
-import Navbar from '../components/store/Navbar';
 import SearchBar from '../components/store/SearchBar';
 import CategoryPills, { type Category } from '../components/store/CategoryPills';
 import CarOfTheWeek from '../components/store/CarOfTheWeek';
@@ -19,12 +17,10 @@ import {
   type ViewMode,
 } from '../components/store/storeFilters';
 import { mockListings } from '../lib/mockListings';
-import { useTheme } from '../context/ThemeContext';
 
 const SECTIONS = ['Cars', 'Parts', 'Wheels', 'Engines'] as const;
 
 const StorePage = () => {
-  const { theme } = useTheme();
   const [search, setSearch] = useState('');
   const [category, setCategory] = useState<Category>('All');
   const [filters, setFilters] = useState<StoreFilters>(DEFAULT_FILTERS);
@@ -73,25 +69,7 @@ const StorePage = () => {
   };
 
   return (
-    <div className="relative min-h-screen bg-black transition-colors light:bg-[#f7f5f0]">
-      <div className="pointer-events-none fixed inset-0 h-screen">
-        <LightRays
-          raysOrigin="top-center"
-          raysColor="#fff3c4"
-          raysSpeed={0.6}
-          lightSpread={0.7}
-          rayLength={1.8}
-          followMouse
-          mouseInfluence={0.08}
-          fadeDistance={1.1}
-          saturation={0.9}
-          lightMode={theme === 'light'}
-        />
-      </div>
-
-      <div className="relative z-10 flex min-h-screen flex-col">
-        <Navbar />
-
+    <>
         <main className="mx-auto w-full max-w-[1700px] flex-1 px-4 py-8 sm:px-6 lg:px-10">
           <section className={browsing ? 'mb-6' : 'mb-10 pt-6 text-center'}>
             {!browsing && (
@@ -176,8 +154,7 @@ const StorePage = () => {
         </main>
 
         <Footer />
-      </div>
-    </div>
+    </>
   );
 };
 

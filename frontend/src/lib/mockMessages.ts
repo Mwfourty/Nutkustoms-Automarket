@@ -12,6 +12,7 @@ export interface Conversation {
   lastSeen: string;
   unread: boolean;
   garageId?: string;
+  preview?: string;
   messages: ChatMessage[];
 }
 
