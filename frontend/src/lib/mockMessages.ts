@@ -3,11 +3,13 @@ export interface ChatMessage {
   fromMe: boolean;
   text: string;
   time: string;
+  readAt?: string | null;
 }
 
 export interface Conversation {
   id: string;
   name: string;
+  avatarUrl?: string | null;
   subject: string;
   lastSeen: string;
   unread: boolean;

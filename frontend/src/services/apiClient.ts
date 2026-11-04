@@ -37,19 +37,20 @@ export async function apiRequest<T>(
   path: string,
   options: RequestInit = {}
 ): Promise<T> {
-  const token = localStorage.getItem('token');
-
   const headers = new Headers(options.headers);
 
   headers.set('Accept', 'application/json');
 
-  if (options.body && !headers.has('Content-Type')) {
+  if (
+    options.body &&
+    !(options.body instanceof FormData) &&
+    !headers.has('Content-Type')
+  ) {
     headers.set('Content-Type', 'application/json');
   }
 
-  if (token) {
-    headers.set('Authorization', `Bearer ${token}`);
-  }
+  // The session lives in an HttpOnly cookie; this header is required by the backend's CSRF check.
+  headers.set('X-Requested-With', 'XMLHttpRequest');
 
   const response = await fetch(`/api${path}`, {
     ...options,

@@ -3,6 +3,8 @@ import {
   ShieldCheck, ShieldOff, Star, Tag, type LucideIcon,
 } from 'lucide-react';
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { AnimatePresence, motion } from 'motion/react';
 import BorderGlow from '../effects/BorderGlow';
 import { useTheme } from '../../context/ThemeContext';
 import type { StoreListing } from '../../types/listing';
@@ -10,6 +12,9 @@ import type { StoreListing } from '../../types/listing';
 interface ListingCardProps {
   listing: StoreListing;
   layout?: 'grid' | 'list';
+  /** When provided, the heart is controlled by the parent (e.g. backed by saved listings). */
+  saved?: boolean;
+  onToggleSave?: (next: boolean) => void;
 }
 
 type Spec = { icon: LucideIcon; label: string; full: string };
@@ -21,6 +26,7 @@ const CATEGORY_SPECS: Record<StoreListing['category'], SpecKey[]> = {
   Engines: ['year', 'mileage', 'condition'],
   Wheels: ['condition', 'year'],
   Parts: ['condition', 'year'],
+  Other: ['condition'],
 };
 
 const formatPrice = (price: number) => `R ${price.toLocaleString('en-ZA')}`;
@@ -35,11 +41,16 @@ const formatMileageShort = (km: number) => {
 
 const formatTransmission = (t: string) => (/^auto/i.test(t) ? 'Auto' : t);
 
+const compactCount = (n: number) => (n >= 1000 ? `${(n / 1000).toFixed(1).replace(/\.0$/, '')}k` : String(n));
+
 const buildSpecs = (l: StoreListing): Spec[] => {
   const mileagePrefix = l.category === 'Engines' ? 'Engine mileage' : 'Mileage';
 
   const all: Record<SpecKey, Spec | null> = {
-    year: { icon: Calendar, label: String(l.year), full: `Year: ${l.year}` },
+    year:
+      l.year > 0
+        ? { icon: Calendar, label: String(l.year), full: `Year: ${l.year}` }
+        : null,
     mileage:
       l.mileageKm > 0
         ? {
@@ -69,12 +80,15 @@ type InfoLine = { icon: LucideIcon; text: string; tone: 'good' | 'neutral' | 'mu
 
 const buildInfoLine = (l: StoreListing): InfoLine => {
   if (l.category === 'Cars' || l.category === 'Engines') {
-    return l.verifiedHistory && l.serviceRecords > 0
-      ? {
-          icon: ShieldCheck,
-          text: `${l.serviceRecords} service ${l.serviceRecords === 1 ? 'record' : 'records'} on file`,
-          tone: 'good',
-        }
+    if (l.verifiedHistory && l.serviceRecords > 0) {
+      return {
+        icon: ShieldCheck,
+        text: `${l.serviceRecords} service ${l.serviceRecords === 1 ? 'record' : 'records'} on file`,
+        tone: 'good',
+      };
+    }
+    return l.verifiedHistory
+      ? { icon: ShieldCheck, text: 'Linked garage history', tone: 'good' }
       : { icon: ShieldOff, text: 'No service history', tone: 'muted' };
   }
 
@@ -94,17 +108,25 @@ const TONE_CLASS: Record<InfoLine['tone'], string> = {
   muted: 'text-neutral-600 light:text-neutral-400',
 };
 
-const ListingCard = ({ listing, layout = 'grid' }: ListingCardProps) => {
+const ListingCard = ({
+  listing,
+  layout = 'grid',
+  saved: savedProp,
+  onToggleSave,
+}: ListingCardProps) => {
   const { theme } = useTheme();
   const isLight = theme === 'light';
   const isList = layout === 'list';
-  const [saved, setSaved] = useState(false);
+  const [localSaved, setLocalSaved] = useState(false);
+  const saved = savedProp ?? localSaved;
+  const likeCount = listing.likes ?? 0;
 
   const specs = buildSpecs(listing);
   const info = buildInfoLine(listing);
   const InfoIcon = info.icon;
 
   return (
+    <Link to={`/listings/${listing.id}`} className="block h-full w-full">
     <BorderGlow
       backgroundColor={isLight ? '#ffffff' : '#0a0a0a'}
       surfaceColor={isLight ? 'rgba(255, 255, 255, 0.8)' : 'rgba(255, 255, 255, 0.03)'}
@@ -133,23 +155,46 @@ const ListingCard = ({ listing, layout = 'grid' }: ListingCardProps) => {
           {listing.verifiedHistory && (
             <span className="absolute left-3 top-3 flex items-center gap-1 rounded-md bg-black/60 px-2 py-1 text-[11px] font-medium text-amber-200 backdrop-blur-md light:bg-white/90 light:text-amber-700">
               <ShieldCheck size={12} />
-              Verified
+              Documents Available
             </span>
           )}
 
           <button
             type="button"
             aria-label={saved ? 'Remove from saved' : 'Save listing'}
+            aria-pressed={saved}
             onClick={(e) => {
               e.preventDefault();
               e.stopPropagation();
-              setSaved((s) => !s);
+              if (savedProp === undefined) setLocalSaved(!saved);
+              onToggleSave?.(!saved);
             }}
-            className={`absolute right-3 top-3 flex h-8 w-8 items-center justify-center rounded-md border border-white/10 bg-black/50 backdrop-blur-md transition-colors hover:text-rose-400 light:border-black/10 light:bg-white/80 ${
+            className={`absolute right-3 top-3 flex h-8 items-center justify-center gap-1.5 rounded-md border border-white/10 bg-black/50 px-2 text-xs font-medium tabular-nums backdrop-blur-md transition-colors hover:text-rose-400 light:border-black/10 light:bg-white/80 ${
               saved ? 'text-rose-400' : 'text-neutral-300 light:text-neutral-600'
             }`}
           >
-            <Heart size={14} className={saved ? 'fill-current' : ''} />
+            <motion.span
+              key={saved ? 'on' : 'off'}
+              className="flex"
+              initial={saved ? { scale: 0.4 } : false}
+              animate={{ scale: 1 }}
+              transition={{ type: 'spring', stiffness: 600, damping: 12 }}
+            >
+              <Heart size={14} className={saved ? 'fill-current' : ''} />
+            </motion.span>
+            <span className="relative inline-flex h-4 overflow-hidden leading-4">
+              <AnimatePresence mode="popLayout" initial={false}>
+                <motion.span
+                  key={likeCount}
+                  initial={{ y: saved ? 12 : -12, opacity: 0 }}
+                  animate={{ y: 0, opacity: 1 }}
+                  exit={{ y: saved ? -12 : 12, opacity: 0 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  {compactCount(likeCount)}
+                </motion.span>
+              </AnimatePresence>
+            </span>
           </button>
         </div>
 
@@ -202,14 +247,17 @@ const ListingCard = ({ listing, layout = 'grid' }: ListingCardProps) => {
               <MapPin size={12} className="shrink-0" />
               <span className="truncate">{listing.location}</span>
             </span>
-            <span className="flex shrink-0 items-center gap-1">
-              <Star size={12} className="fill-amber-300 text-amber-300" />
-              {listing.sellerRating.toFixed(1)}
-            </span>
+            {listing.sellerRating > 0 && (
+              <span className="flex shrink-0 items-center gap-1">
+                <Star size={12} className="fill-amber-300 text-amber-300" />
+                {listing.sellerRating.toFixed(1)}
+              </span>
+            )}
           </div>
         </div>
       </div>
     </BorderGlow>
+    </Link>
   );
 };
 

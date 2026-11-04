@@ -1,5 +1,4 @@
 import type { Category } from './CategoryPills';
-import { LOCATIONS } from '../../lib/mockListings';
 import type { StoreListing } from '../../types/listing';
 
 export type SortKey = 'newest' | 'price-asc' | 'price-desc' | 'mileage-asc';
@@ -32,9 +31,11 @@ export const TRANSMISSION_OPTIONS: Option[] = [
   { value: 'Automatic', label: 'Automatic' },
 ];
 
-export const LOCATION_OPTIONS: Option[] = [
+export const buildLocationOptions = (locations: string[]): Option[] => [
   { value: 'Any', label: 'Any location' },
-  ...LOCATIONS.map((l) => ({ value: l, label: l })),
+  ...[...new Set(locations.filter(Boolean))]
+    .sort((a, b) => a.localeCompare(b))
+    .map((l) => ({ value: l, label: l })),
 ];
 
 export const YEAR_OPTIONS: Option[] = [

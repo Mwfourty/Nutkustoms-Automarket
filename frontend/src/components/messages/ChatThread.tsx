@@ -1,4 +1,4 @@
-import { ArrowLeft, Camera, Home, Mic, Send } from 'lucide-react';
+import { ArrowLeft, Camera, CheckCheck, Home, Mic, Send } from 'lucide-react';
 import { useEffect, useRef, useState, type FormEvent } from 'react';
 import { Link } from 'react-router-dom';
 import type { Conversation } from '../../lib/mockMessages';
@@ -70,7 +70,7 @@ const ChatThread = ({ conversation, onBack, onSend, className = 'flex' }: ChatTh
           >
             <ArrowLeft size={18} />
           </button>
-          <Avatar size={36} />
+          <Avatar size={36} src={conversation.avatarUrl} />
           <div className="min-w-0">
             <p className="truncate font-display text-sm font-semibold text-white light:text-neutral-900">
               {conversation.name}
@@ -81,7 +81,7 @@ const ChatThread = ({ conversation, onBack, onSend, className = 'flex' }: ChatTh
 
         {conversation.garageId && (
           <Link
-            to={`/garage/${conversation.garageId}`}
+            to={`/garages/${conversation.garageId}`}
             aria-label="View garage"
             className="text-neutral-500 transition-colors hover:text-neutral-200 light:hover:text-neutral-900"
           >
@@ -107,7 +107,22 @@ const ChatThread = ({ conversation, onBack, onSend, className = 'flex' }: ChatTh
             >
               {m.text}
             </p>
-            <span className="text-[11px] text-neutral-500">{m.time}</span>
+            <div className="flex items-center gap-1.5 text-[11px] text-neutral-500">
+              <span>{m.time}</span>
+
+              {m.fromMe && m.readAt && (
+                <>
+                  <span aria-hidden="true">{'\u00b7'}</span>
+                  <span
+                    className="inline-flex items-center gap-1 text-amber-400"
+                    title={`Seen at ${new Date(m.readAt).toLocaleString()}`}
+                  >
+                    <CheckCheck size={13} />
+                    Seen
+                  </span>
+                </>
+              )}
+            </div>
           </div>
         ))}
       </div>

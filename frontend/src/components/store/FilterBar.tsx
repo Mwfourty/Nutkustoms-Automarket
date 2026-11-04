@@ -1,6 +1,6 @@
 import { ChevronDown, LayoutGrid, List, RotateCcw, ShieldCheck } from 'lucide-react';
 import {
-  LOCATION_OPTIONS,
+  buildLocationOptions,
   PAGE_SIZES,
   PRICE_OPTIONS,
   SORT_OPTIONS,
@@ -57,6 +57,7 @@ interface FilterBarProps {
   pageSize: number;
   onPageSizeChange: (size: number) => void;
   count: number;
+  locations: string[];
   showViewControls: boolean;
 }
 
@@ -71,6 +72,7 @@ const FilterBar = ({
   pageSize,
   onPageSizeChange,
   count,
+  locations,
   showViewControls,
 }: FilterBarProps) => {
   const set = <K extends keyof StoreFilters>(key: K, value: StoreFilters[K]) =>
@@ -81,7 +83,7 @@ const FilterBar = ({
       <ChipSelect label="Price" value={filters.maxPrice} options={PRICE_OPTIONS} active={filters.maxPrice !== 'Any'} onChange={(v) => set('maxPrice', v)} />
       <ChipSelect label="Year" value={filters.yearFrom} options={YEAR_OPTIONS} active={filters.yearFrom !== 'Any'} onChange={(v) => set('yearFrom', v)} />
       <ChipSelect label="Transmission" value={filters.transmission} options={TRANSMISSION_OPTIONS} active={filters.transmission !== 'Any'} onChange={(v) => set('transmission', v)} />
-      <ChipSelect label="Location" value={filters.location} options={LOCATION_OPTIONS} active={filters.location !== 'Any'} onChange={(v) => set('location', v)} />
+      <ChipSelect label="Location" value={filters.location} options={buildLocationOptions(locations)} active={filters.location !== 'Any'} onChange={(v) => set('location', v)} />
 
       <button
         type="button"

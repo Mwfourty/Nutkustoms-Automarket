@@ -16,11 +16,13 @@ import {
   type StoreFilters,
   type ViewMode,
 } from '../components/store/storeFilters';
-import { mockListings } from '../lib/mockListings';
+import { useStoreListings } from '../hooks/useStoreListings';
 
-const SECTIONS = ['Cars', 'Parts', 'Wheels', 'Engines'] as const;
+const SECTIONS = ['Cars', 'Parts', 'Wheels', 'Engines', 'Other'] as const;
 
 const StorePage = () => {
+  const { listings: allListings, savedIds, loading, error, notice, toggleSave } =
+    useStoreListings();
   const [search, setSearch] = useState('');
   const [category, setCategory] = useState<Category>('All');
   const [filters, setFilters] = useState<StoreFilters>(DEFAULT_FILTERS);
@@ -30,17 +32,19 @@ const StorePage = () => {
   const [page, setPage] = useState(1);
 
   const listings = useMemo(
-    () => filterAndSort(mockListings, { search, category, filters, sort }),
-    [search, category, filters, sort],
+    () => filterAndSort(allListings, { search, category, filters, sort }),
+    [allListings, search, category, filters, sort],
   );
+
+  const locations = useMemo(() => allListings.map((l) => l.location), [allListings]);
 
   const featured = useMemo(
     () =>
-      mockListings
+      allListings
         .filter((l) => l.verifiedHistory)
         .sort((a, b) => a.listedDaysAgo - b.listedDaysAgo)
         .slice(0, 8),
-    [],
+    [allListings],
   );
 
   const browsing = category !== 'All' || search.trim() !== '' || hasActiveFilters(filters);
@@ -110,11 +114,22 @@ const StorePage = () => {
               pageSize={pageSize}
               onPageSizeChange={changePageSize}
               count={listings.length}
+              locations={locations}
               showViewControls={browsing}
             />
           </div>
 
-          {browsing ? (
+          {notice && (
+            <p role="status" className="mb-4 text-sm text-amber-300 light:text-amber-700">
+              {notice}
+            </p>
+          )}
+
+          {loading ? (
+            <p className="py-24 text-center text-sm text-neutral-500">Loading listings…</p>
+          ) : error ? (
+            <p className="py-24 text-center text-sm text-rose-400">{error}</p>
+          ) : browsing ? (
             listings.length === 0 ? (
               <div className="flex flex-col items-center gap-3 py-24 text-neutral-500">
                 <SearchIcon size={28} strokeWidth={1.5} />
@@ -130,7 +145,13 @@ const StorePage = () => {
                   }
                 >
                   {pagedListings.map((listing) => (
-                    <ListingCard key={listing.id} listing={listing} layout={view} />
+                    <ListingCard
+                      key={listing.id}
+                      listing={listing}
+                      layout={view}
+                      saved={savedIds.has(listing.id)}
+                      onToggleSave={(next) => void toggleSave(listing, next)}
+                    />
                   ))}
                 </div>
                 <div className="mt-10">
@@ -140,13 +161,26 @@ const StorePage = () => {
             )
           ) : (
             <div className="flex flex-col gap-10">
-              <ListingRow title="Featured" icon={Sparkles} listings={featured} />
+              {allListings.length === 0 && (
+                <p className="py-16 text-center text-sm text-neutral-500">
+                  No listings yet. Be the first to sell something!
+                </p>
+              )}
+              <ListingRow
+                title="Featured"
+                icon={Sparkles}
+                listings={featured}
+                savedIds={savedIds}
+                onToggleSave={(l, next) => void toggleSave(l, next)}
+              />
               {SECTIONS.map((section) => (
                 <ListingRow
                   key={section}
                   title={section}
                   listings={listings.filter((l) => l.category === section).slice(0, 10)}
-                  onSeeAll={() => changeCategory(section)}
+                  onSeeAll={section === 'Other' ? undefined : () => changeCategory(section)}
+                  savedIds={savedIds}
+                  onToggleSave={(l, next) => void toggleSave(l, next)}
                 />
               ))}
             </div>

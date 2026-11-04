@@ -40,7 +40,7 @@ export interface Conversation {
   conversationId: string;
   lastMessageAt: string;
   otherParticipant: ConversationParticipant;
-  listing: ConversationListing;
+  listing: ConversationListing | null;
   latestMessage: Message | null;
   unreadCount: number;
 }
@@ -96,6 +96,16 @@ export const sendConversationMessage = (
       method: 'POST',
       body: JSON.stringify({ body }),
     }
+  );
+};
+
+// Open (or fetch the existing) direct conversation with a user
+export const startDirectConversation = (
+  userId: string
+): Promise<{ conversationId: string }> => {
+  return apiRequest<{ conversationId: string }>(
+    `/Users/${userId}/conversations`,
+    { method: 'POST' }
   );
 };
 

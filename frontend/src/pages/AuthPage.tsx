@@ -7,6 +7,7 @@ import logoDark from '../assets/ntkstms-logo-og-removebg-preview.png';
 import logoLight from '../assets/ntkstms-logo-og-light-mode.png';
 import { useTheme } from '../context/ThemeContext';
 import { login, register } from '../services/authApi';
+import { markLoggedIn } from '../services/session';
 
 type Mode = 'login' | 'signup';
 type FieldName = 'firstName' | 'lastName' | 'username' | 'email' | 'password' | 'confirmPassword';
@@ -392,8 +393,8 @@ const AuthPage = ({ mode }: { mode: Mode }) => {
         });
         navigate('/login');
       } else {
-        const result = await login({ email, password: form.password });
-        localStorage.setItem('token', result.token);
+        await login({ email, password: form.password });
+        markLoggedIn();
         navigate('/');
       }
     } catch (err) {

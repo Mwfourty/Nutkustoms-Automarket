@@ -4,7 +4,7 @@ import type { Variants } from 'motion/react';
 import { useLocation, useOutlet } from 'react-router-dom';
 
 // Order of the main tabs; used to decide which way pages slide
-const ROUTE_ORDER = ['/', '/sell', '/garage', '/messages', '/profile', '/login', '/signup'];
+const ROUTE_ORDER = ['/', '/sell', '/garages', '/garage', '/messages', '/profile', '/login', '/signup'];
 
 const routeIndex = (path: string) => {
   const i = ROUTE_ORDER.findIndex((r) =>

@@ -8,9 +8,11 @@ interface ListingRowProps {
   icon?: LucideIcon;
   listings: StoreListing[];
   onSeeAll?: () => void;
+  savedIds?: Set<string>;
+  onToggleSave?: (listing: StoreListing, next: boolean) => void;
 }
 
-const ListingRow = ({ title, icon: Icon, listings, onSeeAll }: ListingRowProps) => {
+const ListingRow = ({ title, icon: Icon, listings, onSeeAll, savedIds, onToggleSave }: ListingRowProps) => {
   const scrollRef = useRef<HTMLDivElement>(null);
 
   if (listings.length === 0) return null;
@@ -56,7 +58,11 @@ const ListingRow = ({ title, icon: Icon, listings, onSeeAll }: ListingRowProps) 
       <div ref={scrollRef} className="-mx-2 -mt-4 flex snap-x gap-5 overflow-x-auto overflow-y-hidden px-2 py-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
         {listings.map((listing) => (
           <div key={listing.id} className="w-72 shrink-0 snap-start">
-            <ListingCard listing={listing} />
+            <ListingCard
+              listing={listing}
+              saved={savedIds?.has(listing.id)}
+              onToggleSave={onToggleSave && ((next) => onToggleSave(listing, next))}
+            />
           </div>
         ))}
       </div>

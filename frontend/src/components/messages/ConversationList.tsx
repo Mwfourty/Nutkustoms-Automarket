@@ -58,7 +58,7 @@ const ConversationList = ({
               }`}
             >
               <span className="relative">
-                <Avatar />
+                <Avatar src={c.avatarUrl} />
                 {c.unread && (
                   <span
                     aria-label="Unread"

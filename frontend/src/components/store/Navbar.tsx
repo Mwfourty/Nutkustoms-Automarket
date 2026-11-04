@@ -11,7 +11,7 @@ type NavItem = { label: string; short?: string; icon: LucideIcon; to: string; ba
 const NAV_LINKS: NavItem[] = [
   { label: 'Browse', icon: Compass, to: '/' },
   { label: 'Sell', icon: Tag, to: '/sell' },
-  { label: 'My Garage', short: 'Garage', icon: Warehouse, to: '/garage' },
+  { label: 'Garages', short: 'Garages', icon: Warehouse, to: '/garages' },
 ];
 
 const UTILITY_LINKS: NavItem[] = [

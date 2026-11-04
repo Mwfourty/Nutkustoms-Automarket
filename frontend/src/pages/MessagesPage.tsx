@@ -8,7 +8,9 @@ const MessagesPage = () => {
   const { visible, active, query, setQuery, select, send } = useConversations();
 
   // Below lg only one pane shows at a time: the list, or the open thread.
-  const [threadOpen, setThreadOpen] = useState(false);
+  const [threadOpen, setThreadOpen] = useState(
+    () => new URLSearchParams(window.location.search).has('conversation'),
+  );
 
   // A thread needs the full screen on mobile, so the bottom tab bar steps aside.
   useHideTabBar(threadOpen);

@@ -19,11 +19,17 @@ const EMPTY_CONVERSATION: Conversation = {
   messages: [],
 };
 
-const formatMessageTime = (date: string) =>
-  new Date(date).toLocaleTimeString('en-US', {
-    hour: 'numeric',
+const formatMessageTime = (date: string) => {
+  const d = new Date(date);
+
+  const time = d.toLocaleTimeString('en-GB', {
+    hour: '2-digit',
     minute: '2-digit',
+    hour12: false,
   });
+
+  return `${time} \u00b7 ${d.toLocaleDateString('en-GB')}`;
+};
 
 const formatRelativeTime = (date: string) => {
   const timestamp = new Date(date).getTime();
@@ -79,7 +85,8 @@ export const useConversations = () => {
         response.conversations.map((conversation) => ({
           id: conversation.conversationId,
           name: conversation.otherParticipant.username,
-          subject: conversation.listing.title,
+          avatarUrl: conversation.otherParticipant.profileImageUrl,
+          subject: conversation.listing?.title ?? 'Direct message',
           lastSeen: formatRelativeTime(conversation.lastMessageAt),
           unread: conversation.unreadCount > 0,
           preview: conversation.latestMessage?.body ?? 'No messages yet',
@@ -88,11 +95,14 @@ export const useConversations = () => {
 
         setConversations(mappedConversations);
 
-        setActiveId((current) =>
-          mappedConversations.some((c) => c.id === current)
-            ? current
-            : mappedConversations[0]?.id ?? null,
-        );
+        setActiveId((current) => {
+          const requested = new URLSearchParams(window.location.search).get('conversation');
+          const preferred = current ?? requested;
+
+          return mappedConversations.some((c) => c.id === preferred)
+            ? preferred
+            : mappedConversations[0]?.id ?? null;
+        });
       } catch (err) {
         if (!cancelled) {
           setError(
@@ -136,6 +146,7 @@ export const useConversations = () => {
             fromMe: message.senderId === currentUserId,
             text: message.body,
             time: formatMessageTime(message.createdAt),
+            readAt: message.readAt,
           }),
         );
 
@@ -228,6 +239,7 @@ export const useConversations = () => {
           fromMe: savedMessage.senderId === currentUserId,
           text: savedMessage.body,
           time: formatMessageTime(savedMessage.createdAt),
+          readAt: savedMessage.readAt,
         };
 
         // Update the conversation using the saved message.

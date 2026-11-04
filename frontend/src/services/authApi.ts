@@ -18,13 +18,15 @@ export interface LoginResult {
   username: string;
   email: string;
   role: string | number;
-  token: string;
 }
 
 async function post<T>(path: string, body: unknown): Promise<T> {
   const res = await fetch(`/api/auth/${path}`, {
     method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
+    headers: {
+      'Content-Type': 'application/json',
+      'X-Requested-With': 'XMLHttpRequest',
+    },
     body: JSON.stringify(body),
   });
 

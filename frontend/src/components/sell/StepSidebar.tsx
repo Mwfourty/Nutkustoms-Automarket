@@ -1,12 +1,13 @@
 import { Check } from 'lucide-react';
-import { STEPS } from './listingDraft';
+import type { StepMeta } from './listingDraft';
 
 interface StepSidebarProps {
+  steps: StepMeta[];
   current: number;
   onSelect: (step: number) => void;
 }
 
-const StepSidebar = ({ current, onSelect }: StepSidebarProps) => (
+const StepSidebar = ({ steps: STEPS, current, onSelect }: StepSidebarProps) => (
   <aside className="w-full rounded-3xl border border-white/8 bg-white/[0.03] p-4 backdrop-blur-xl lg:w-64 lg:shrink-0 lg:self-start lg:p-6 light:border-black/10 light:bg-white/80 light:shadow-sm">
     <div className="flex items-center gap-2 lg:hidden">
       {STEPS.map((step, index) => {
