@@ -1,6 +1,8 @@
 
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.RateLimiting;
+using NtkstmsAutoMarket.API.Extensions;
 using NtkstmsAutoMarket.Application.Features.Messaging.GetConversations;
 using NtkstmsAutoMarket.Application.Features.Messaging.GetConversationMessages;
 using NtkstmsAutoMarket.Application.Features.Messaging.StartConversation;
@@ -28,14 +30,19 @@ public class MessagingController : ControllerBase
     private readonly SendMessageHandler
         _sendMessageHandler;
 
+    private readonly StartDirectConversationHandler
+        _startDirectConversationHandler;
+
     public MessagingController(
         StartConversationHandler startConversationHandler,
+        StartDirectConversationHandler startDirectConversationHandler,
         GetConversationsHandler getConversationsHandler,
         GetConversationMessagesHandler getConversationMessagesHandler,
         MarkConversationAsReadHandler markConversationAsReadHandler,
         SendMessageHandler sendMessageHandler)
     {
         _startConversationHandler = startConversationHandler;
+        _startDirectConversationHandler = startDirectConversationHandler;
         _getConversationsHandler = getConversationsHandler;
         _getConversationMessagesHandler = getConversationMessagesHandler;
         _markConversationAsReadHandler = markConversationAsReadHandler;
@@ -43,6 +50,7 @@ public class MessagingController : ControllerBase
     }
 
     [Authorize]
+    [EnableRateLimiting(RateLimitPolicies.Messaging)]
     [HttpPost("Listings/{listingId:guid}/conversations")]
     public async Task<IActionResult> StartConversation(
         Guid listingId,
@@ -59,6 +67,21 @@ public class MessagingController : ControllerBase
         return Created(
             $"/api/Conversations/{result.ConversationId}",
             result);
+    }
+
+    [Authorize]
+    [EnableRateLimiting(RateLimitPolicies.Messaging)]
+    [HttpPost("Users/{userId:guid}/conversations")]
+    public async Task<IActionResult> StartDirectConversation(
+        Guid userId,
+        CancellationToken cancellationToken)
+    {
+        var result =
+            await _startDirectConversationHandler.Handle(
+                userId,
+                cancellationToken);
+
+        return Ok(new { conversationId = result.ConversationId });
     }
 
     [Authorize]
@@ -156,6 +179,7 @@ public class MessagingController : ControllerBase
     }
 
     [Authorize]
+    [EnableRateLimiting(RateLimitPolicies.Messaging)]
     [HttpPost("Conversations/{conversationId:guid}/Messages")]
     public async Task<IActionResult> SendMessage(
         Guid conversationId,

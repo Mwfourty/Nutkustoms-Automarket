@@ -38,6 +38,15 @@ public class ListingImage : BaseEntity
         IsPrimary = isPrimary;
     }
 
+    public void SetUrl(string url)
+    {
+        if (string.IsNullOrWhiteSpace(url))
+            throw new ArgumentException(
+                "Image URL cannot be empty.");
+
+        Url = url;
+    }
+
     public void UpdateDisplayOrder(int displayOrder)
     {
         if (displayOrder < 0)

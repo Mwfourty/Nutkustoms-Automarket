@@ -45,6 +45,15 @@ public class ApplicationDbContext : DbContext, IApplicationDbContext
     public DbSet<MarketplaceMessage> MarketplaceMessages =>
         Set<MarketplaceMessage>();
 
+    public DbSet<SavedListing> SavedListings => Set<SavedListing>();
+
+    public DbSet<GarageVehicleLike> GarageVehicleLikes =>
+        Set<GarageVehicleLike>();
+
+    public DbSet<SavedContact> SavedContacts => Set<SavedContact>();
+
+    public DbSet<RevokedToken> RevokedTokens => Set<RevokedToken>();
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);

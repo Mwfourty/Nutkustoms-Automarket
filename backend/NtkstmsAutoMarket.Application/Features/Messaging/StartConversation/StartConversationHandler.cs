@@ -48,6 +48,18 @@ public class StartConversationHandler
                 "You cannot start a conversation about your own listing.");
         }
 
+        var sellerAcceptsMessages = await _context.Users
+            .AsNoTracking()
+            .Where(x => x.Id == listing.SellerId)
+            .Select(x => x.AllowMessages)
+            .FirstOrDefaultAsync(cancellationToken);
+
+        if (!sellerAcceptsMessages)
+        {
+            throw new InvalidOperationException(
+                "This seller is not accepting new messages.");
+        }
+
         var existingConversation =
             await _context.MarketplaceConversations
                 .AsNoTracking()

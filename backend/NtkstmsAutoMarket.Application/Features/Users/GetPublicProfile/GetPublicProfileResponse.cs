@@ -19,4 +19,8 @@ public class GetPublicProfileResponse
     public double AverageRating { get; set; }
 
     public int ReviewCount { get; set; }
+
+    public string? City { get; set; }
+
+    public string? Province { get; set; }
 }

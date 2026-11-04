@@ -43,6 +43,21 @@ public class UserConfiguration : IEntityTypeConfiguration<User>
         builder.Property(u => u.ProfileImageUrl)
             .HasMaxLength(500);
 
+        builder.Property(u => u.City)
+            .HasMaxLength(100);
+
+        builder.Property(u => u.Province)
+            .HasMaxLength(100);
+
+        builder.Property(u => u.ProfileVisibility)
+            .IsRequired();
+
+        builder.Property(u => u.AllowMessages)
+            .IsRequired();
+
+        builder.Property(u => u.DeactivatedByUser)
+            .IsRequired();
+
         builder.Property(u => u.Role)
             .IsRequired();
 

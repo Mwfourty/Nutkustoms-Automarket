@@ -1,5 +1,9 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.RateLimiting;
+using NtkstmsAutoMarket.API.Extensions;
+using Microsoft.EntityFrameworkCore;
+using NtkstmsAutoMarket.Application.Common.Interfaces;
 using NtkstmsAutoMarket.Application.Features.Listings.CreateListing;
 using NtkstmsAutoMarket.Application.Features.Listings.GetListings;
 using NtkstmsAutoMarket.Application.Features.Listings.GetMyListings;
@@ -17,6 +21,7 @@ using NtkstmsAutoMarket.Application.Features.Listings.Documents.DeleteListingDoc
 using NtkstmsAutoMarket.Application.Features.Listings.PublishListing;
 using NtkstmsAutoMarket.Application.Features.Listings.ReserveListing;
 using NtkstmsAutoMarket.Application.Features.Listings.MarkListingAsSold;
+using NtkstmsAutoMarket.Application.Features.Listings.CarOfTheWeek;
 using NtkstmsAutoMarket.Domain.Enums;
 
 namespace NtkstmsAutoMarket.API.Controllers;
@@ -44,7 +49,16 @@ public class ListingsController : ControllerBase
     private readonly MarkListingAsSoldHandler _markListingAsSoldHandler;
 
 
+    private readonly UploadListingImageHandler _uploadListingImageHandler;
+    private readonly IListingImageStorage _listingImageStorage;
+    private readonly IApplicationDbContext _context;
+    private readonly CarOfTheWeekHandler _carOfTheWeekHandler;
+
     public ListingsController(
+    CarOfTheWeekHandler carOfTheWeekHandler,
+    UploadListingImageHandler uploadListingImageHandler,
+    IListingImageStorage listingImageStorage,
+    IApplicationDbContext context,
     CreateListingHandler createListingHandler,
     GetListingsHandler getListingsHandler,
     GetMyListingsHandler getMyListingsHandler,
@@ -63,6 +77,10 @@ public class ListingsController : ControllerBase
     ReserveListingHandler reserveListingHandler,
     MarkListingAsSoldHandler markListingAsSoldHandler)
     {
+        _carOfTheWeekHandler = carOfTheWeekHandler;
+        _uploadListingImageHandler = uploadListingImageHandler;
+        _listingImageStorage = listingImageStorage;
+        _context = context;
         _createListingHandler = createListingHandler;
         _getListingsHandler = getListingsHandler;
         _getMyListingsHandler = getMyListingsHandler;
@@ -109,6 +127,7 @@ public class ListingsController : ControllerBase
     [FromQuery] string? location = null,
     [FromQuery] string? sortBy = null,
     [FromQuery] string? sortDirection = null,
+    [FromQuery] Guid? sellerId = null,
     CancellationToken cancellationToken = default)
     {
         var result = await _getListingsHandler.Handle(
@@ -122,8 +141,22 @@ public class ListingsController : ControllerBase
                 maxPrice,
                 location,
                 sortBy,
-                sortDirection),
+                sortDirection,
+                sellerId),
             cancellationToken);
+
+        return Ok(result);
+    }
+
+    [HttpGet("car-of-the-week")]
+    public async Task<IActionResult> GetCarOfTheWeek(
+        CancellationToken cancellationToken)
+    {
+        var result = await _carOfTheWeekHandler.Handle(
+            cancellationToken);
+
+        if (result is null)
+            return NoContent();
 
         return Ok(result);
     }
@@ -210,6 +243,51 @@ public class ListingsController : ControllerBase
             result);
     }
 
+    [Authorize]
+    [EnableRateLimiting(RateLimitPolicies.Uploads)]
+    [HttpPost("{id:guid}/images/upload")]
+    [RequestSizeLimit(5 * 1024 * 1024)]
+    public async Task<IActionResult> UploadImage(
+        Guid id,
+        IFormFile file,
+        CancellationToken cancellationToken)
+    {
+        if (file.Length > UploadListingImageHandler.MaxBytes)
+            return BadRequest("Image must be 4 MB or smaller.");
+
+        using var buffer = new MemoryStream();
+        await file.CopyToAsync(buffer, cancellationToken);
+
+        var result = await _uploadListingImageHandler.Handle(
+            id,
+            buffer.ToArray(),
+            cancellationToken);
+
+        return Created(result.Url, result);
+    }
+
+    [HttpGet("{id:guid}/images/{imageId:guid}/file")]
+    public async Task<IActionResult> GetImageFile(
+        Guid id,
+        Guid imageId,
+        CancellationToken cancellationToken)
+    {
+        var exists = await _context.ListingImages
+            .AnyAsync(
+                x => x.Id == imageId && x.ListingId == id,
+                cancellationToken);
+
+        var image = exists ? _listingImageStorage.Open(imageId) : null;
+
+        if (image is null)
+            return NotFound();
+
+        Response.Headers.CacheControl = "public, max-age=86400";
+        Response.Headers.XContentTypeOptions = "nosniff";
+
+        return File(image.Content, image.ContentType);
+    }
+
     [HttpGet("{id:guid}/images")]
     public async Task<IActionResult> GetImages(
     Guid id,
@@ -251,6 +329,7 @@ public class ListingsController : ControllerBase
     }
 
     [Authorize]
+    [EnableRateLimiting(RateLimitPolicies.Uploads)]
     [HttpPost("{id:guid}/documents")]
     public async Task<IActionResult> AddDocument(
     Guid id,

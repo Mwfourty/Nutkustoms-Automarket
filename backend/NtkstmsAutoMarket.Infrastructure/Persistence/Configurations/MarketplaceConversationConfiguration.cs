@@ -20,6 +20,7 @@ public class MarketplaceConversationConfiguration
         builder.HasOne(x => x.Listing)
             .WithMany()
             .HasForeignKey(x => x.ListingId)
+            .IsRequired(false)
             .OnDelete(DeleteBehavior.Restrict);
 
         builder.HasOne(x => x.Buyer)

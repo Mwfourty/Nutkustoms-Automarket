@@ -12,4 +12,5 @@ public record GetListingsQuery(
     decimal? MaxPrice = null,
     string? Location = null,
     string? SortBy = null,
-    string? SortDirection = null);
+    string? SortDirection = null,
+    Guid? SellerId = null);

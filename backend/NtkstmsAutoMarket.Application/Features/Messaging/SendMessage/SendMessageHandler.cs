@@ -23,6 +23,9 @@ public class SendMessageHandler
     {
         var senderId = _currentUser.UserId;
 
+        if (command.Body is { Length: > 2000 })
+            throw new ArgumentException("Messages must be 2000 characters or fewer.");
+
         // Find the conversation and verify the sender is a participant.
         var conversation = await _context.MarketplaceConversations
             .FirstOrDefaultAsync(conversation =>

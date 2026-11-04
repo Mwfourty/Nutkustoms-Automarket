@@ -24,6 +24,14 @@ public class GetListingsResponse
 
     public DateTime CreatedAt { get; set; }
 
+    public string? PrimaryImageUrl { get; set; }
+
+    public Guid? SourceGarageVehicleId { get; set; }
+
+    public int LikeCount { get; set; }
+
+    public double SellerRating { get; set; }
+
     public VehicleResponse? Vehicle { get; set; }
 
     public PartResponse? Part { get; set; }

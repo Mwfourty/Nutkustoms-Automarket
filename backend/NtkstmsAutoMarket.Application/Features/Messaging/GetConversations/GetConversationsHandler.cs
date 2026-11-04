@@ -79,25 +79,27 @@ public class GetConversationsHandler
                                 },
 
                         Listing =
-                            new ConversationListingResponse
-                            {
-                                Id = conversation.Listing.Id,
-                                Title =
-                                    conversation.Listing.Title,
-                                Price =
-                                    conversation.Listing.Price,
-                                Status =
-                                    conversation.Listing.Status,
+                            conversation.Listing == null
+                                ? null
+                                : new ConversationListingResponse
+                                {
+                                    Id = conversation.Listing.Id,
+                                    Title =
+                                        conversation.Listing.Title,
+                                    Price =
+                                        conversation.Listing.Price,
+                                    Status =
+                                        conversation.Listing.Status,
 
-                                PrimaryImageUrl =
-                                    _context.ListingImages
-                                        .Where(image =>
-                                            image.ListingId ==
-                                                conversation.ListingId &&
-                                            image.IsPrimary)
-                                        .Select(image => image.Url)
-                                        .FirstOrDefault()
-                            },
+                                    PrimaryImageUrl =
+                                        _context.ListingImages
+                                            .Where(image =>
+                                                image.ListingId ==
+                                                    conversation.ListingId &&
+                                                image.IsPrimary)
+                                            .Select(image => image.Url)
+                                            .FirstOrDefault()
+                                },
 
                         LatestMessage =
                             _context.MarketplaceMessages

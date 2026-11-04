@@ -25,4 +25,22 @@ public class GetMyProfileResponse
     public bool IsActive { get; set; }
 
     public DateTime CreatedAt { get; set; }
+
+    public int ListingsSold { get; set; }
+
+    public int CarsInGarage { get; set; }
+
+    public double AverageRating { get; set; }
+
+    public int ReviewCount { get; set; }
+
+    public string? City { get; set; }
+
+    public string? Province { get; set; }
+
+    public ProfileVisibility ProfileVisibility { get; set; }
+
+    public bool AllowMessages { get; set; }
+
+    public DateTime? UsernameChangedAt { get; set; }
 }

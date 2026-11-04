@@ -286,6 +286,34 @@ namespace NtkstmsAutoMarket.Infrastructure.Migrations
                     b.ToTable("garage_vehicle_images", (string)null);
                 });
 
+            modelBuilder.Entity("NtkstmsAutoMarket.Domain.Entities.GarageVehicleLike", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<Guid>("GarageVehicleId")
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uuid");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("GarageVehicleId");
+
+                    b.HasIndex("UserId", "GarageVehicleId")
+                        .IsUnique();
+
+                    b.ToTable("garage_vehicle_likes", (string)null);
+                });
+
             modelBuilder.Entity("NtkstmsAutoMarket.Domain.Entities.Listing", b =>
                 {
                     b.Property<Guid>("Id")
@@ -427,7 +455,7 @@ namespace NtkstmsAutoMarket.Infrastructure.Migrations
                     b.Property<DateTime>("LastMessageAt")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<Guid>("ListingId")
+                    b.Property<Guid?>("ListingId")
                         .HasColumnType("uuid");
 
                     b.Property<Guid>("SellerId")
@@ -544,6 +572,95 @@ namespace NtkstmsAutoMarket.Infrastructure.Migrations
                     b.ToTable("parts", (string)null);
                 });
 
+            modelBuilder.Entity("NtkstmsAutoMarket.Domain.Entities.RevokedToken", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<DateTime>("ExpiresAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("Jti")
+                        .IsRequired()
+                        .HasMaxLength(64)
+                        .HasColumnType("character varying(64)");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uuid");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ExpiresAt");
+
+                    b.HasIndex("Jti")
+                        .IsUnique();
+
+                    b.ToTable("revoked_tokens", (string)null);
+                });
+
+            modelBuilder.Entity("NtkstmsAutoMarket.Domain.Entities.SavedContact", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("ContactUserId")
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uuid");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ContactUserId");
+
+                    b.HasIndex("UserId", "ContactUserId")
+                        .IsUnique();
+
+                    b.ToTable("saved_contacts", (string)null);
+                });
+
+            modelBuilder.Entity("NtkstmsAutoMarket.Domain.Entities.SavedListing", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<Guid>("ListingId")
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uuid");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ListingId");
+
+                    b.HasIndex("UserId", "ListingId")
+                        .IsUnique();
+
+                    b.ToTable("saved_listings", (string)null);
+                });
+
             modelBuilder.Entity("NtkstmsAutoMarket.Domain.Entities.SellerReview", b =>
                 {
                     b.Property<Guid>("Id")
@@ -595,8 +712,18 @@ namespace NtkstmsAutoMarket.Infrastructure.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
+                    b.Property<bool>("AllowMessages")
+                        .HasColumnType("boolean");
+
+                    b.Property<string>("City")
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
+
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("timestamp with time zone");
+
+                    b.Property<bool>("DeactivatedByUser")
+                        .HasColumnType("boolean");
 
                     b.Property<string>("Email")
                         .IsRequired()
@@ -619,6 +746,9 @@ namespace NtkstmsAutoMarket.Infrastructure.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("character varying(100)");
 
+                    b.Property<DateTime?>("PasswordChangedAt")
+                        .HasColumnType("timestamp with time zone");
+
                     b.Property<string>("PasswordHash")
                         .IsRequired()
                         .HasColumnType("text");
@@ -631,6 +761,13 @@ namespace NtkstmsAutoMarket.Infrastructure.Migrations
                         .HasMaxLength(500)
                         .HasColumnType("character varying(500)");
 
+                    b.Property<int>("ProfileVisibility")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("Province")
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
+
                     b.Property<int>("Role")
                         .HasColumnType("integer");
 
@@ -641,6 +778,9 @@ namespace NtkstmsAutoMarket.Infrastructure.Migrations
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("character varying(50)");
+
+                    b.Property<DateTime?>("UsernameChangedAt")
+                        .HasColumnType("timestamp with time zone");
 
                     b.HasKey("Id");
 
@@ -851,6 +991,25 @@ namespace NtkstmsAutoMarket.Infrastructure.Migrations
                     b.Navigation("GarageVehicle");
                 });
 
+            modelBuilder.Entity("NtkstmsAutoMarket.Domain.Entities.GarageVehicleLike", b =>
+                {
+                    b.HasOne("NtkstmsAutoMarket.Domain.Entities.GarageVehicle", "GarageVehicle")
+                        .WithMany()
+                        .HasForeignKey("GarageVehicleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("NtkstmsAutoMarket.Domain.Entities.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("GarageVehicle");
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("NtkstmsAutoMarket.Domain.Entities.Listing", b =>
                 {
                     b.HasOne("NtkstmsAutoMarket.Domain.Entities.User", "Seller")
@@ -902,8 +1061,7 @@ namespace NtkstmsAutoMarket.Infrastructure.Migrations
                     b.HasOne("NtkstmsAutoMarket.Domain.Entities.Listing", "Listing")
                         .WithMany()
                         .HasForeignKey("ListingId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.HasOne("NtkstmsAutoMarket.Domain.Entities.User", "Seller")
                         .WithMany()
@@ -946,6 +1104,44 @@ namespace NtkstmsAutoMarket.Infrastructure.Migrations
                         .IsRequired();
 
                     b.Navigation("Listing");
+                });
+
+            modelBuilder.Entity("NtkstmsAutoMarket.Domain.Entities.SavedContact", b =>
+                {
+                    b.HasOne("NtkstmsAutoMarket.Domain.Entities.User", "ContactUser")
+                        .WithMany()
+                        .HasForeignKey("ContactUserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("NtkstmsAutoMarket.Domain.Entities.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("ContactUser");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("NtkstmsAutoMarket.Domain.Entities.SavedListing", b =>
+                {
+                    b.HasOne("NtkstmsAutoMarket.Domain.Entities.Listing", "Listing")
+                        .WithMany()
+                        .HasForeignKey("ListingId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("NtkstmsAutoMarket.Domain.Entities.User", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Listing");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("NtkstmsAutoMarket.Domain.Entities.SellerReview", b =>

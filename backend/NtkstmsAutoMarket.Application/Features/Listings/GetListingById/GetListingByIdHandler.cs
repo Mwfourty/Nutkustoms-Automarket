@@ -27,7 +27,7 @@ public class GetListingByIdHandler
     {
         var currentUserId = _currentUser.UserIdOrNull;
 
-        return await _context.Listings
+        var response = await _context.Listings
             .AsNoTracking()
             .Where(listing => listing.Id == query.ListingId)
             .Where(listing =>
@@ -67,6 +67,7 @@ public class GetListingByIdHandler
                 Status = listing.Status,
                 Location = listing.Location,
                 CreatedAt = listing.CreatedAt,
+                SourceGarageVehicleId = listing.SourceGarageVehicleId,
 
                 Vehicle = listing.Vehicle == null
                     ? null
@@ -165,5 +166,27 @@ public class GetListingByIdHandler
                     .ToList()
             })
             .FirstOrDefaultAsync(cancellationToken);
+
+        if (response is null)
+            return null;
+
+        var counts = await ListingLikeCounts.Load(
+            _context,
+            new[] { response.Id },
+            cancellationToken);
+
+        response.LikeCount = counts.GetValueOrDefault(response.Id);
+
+        if (currentUserId.HasValue)
+        {
+            response.IsSaved = await _context.SavedListings
+                .AnyAsync(
+                    saved =>
+                        saved.UserId == currentUserId.Value &&
+                        saved.ListingId == response.Id,
+                    cancellationToken);
+        }
+
+        return response;
     }
 }

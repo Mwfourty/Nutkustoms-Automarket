@@ -10,6 +10,8 @@ public static class DependencyInjection
         services.AddScoped<
             Features.Listings.CreateListing.CreateListingHandler>();
 
+        services.AddSingleton<Features.Auth.Login.LoginAttemptTracker>();
+
         return services;
     }
 }

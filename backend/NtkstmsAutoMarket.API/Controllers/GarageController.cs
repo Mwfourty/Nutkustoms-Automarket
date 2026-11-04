@@ -1,15 +1,21 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.RateLimiting;
+using NtkstmsAutoMarket.API.Extensions;
 using NtkstmsAutoMarket.Application.Features.Garage.CreateGarageVehicle;
+using NtkstmsAutoMarket.Application.Features.Garage.Likes;
 using NtkstmsAutoMarket.Application.Features.Garage.DeleteGarageVehicle;
 using NtkstmsAutoMarket.Application.Features.Garage.GetGarageVehicle;
 using NtkstmsAutoMarket.Application.Features.Garage.GetMyGarage;
+using NtkstmsAutoMarket.Application.Features.Garage.GetGarageDirectory;
 using NtkstmsAutoMarket.Application.Features.Garage.GetPublicGarage;
 using NtkstmsAutoMarket.Application.Features.Garage.GetUserGarage;
 using NtkstmsAutoMarket.Application.Features.Garage.Images.AddGarageVehicleImage;
 using NtkstmsAutoMarket.Application.Features.Garage.Images.DeleteGarageVehicleImage;
 using NtkstmsAutoMarket.Application.Features.Garage.Images.GetGarageVehicleImages;
 using NtkstmsAutoMarket.Application.Features.Garage.Images.SetPrimaryGarageVehicleImage;
+using NtkstmsAutoMarket.Application.Features.Garage.Images.VehiclePhoto;
+using NtkstmsAutoMarket.Application.Common.Interfaces;
 using NtkstmsAutoMarket.Application.Features.Garage.Modifications.CreateModification;
 using NtkstmsAutoMarket.Application.Features.Garage.Modifications.DeleteModification;
 using NtkstmsAutoMarket.Application.Features.Garage.Modifications.GetModifications;
@@ -45,6 +51,7 @@ public class GarageController : ControllerBase
     private readonly GetUserGarageHandler _getUserGarageHandler;
     private readonly GetGarageVehicleHandler _getGarageVehicleHandler;
     private readonly GetPublicGarageHandler _getPublicGarageHandler;
+    private readonly GetGarageDirectoryHandler _getGarageDirectoryHandler;
     private readonly CreateModificationHandler _createModificationHandler;
     private readonly DeleteModificationHandler _deleteModificationHandler;
     private readonly GetModificationsHandler _getModificationsHandler;
@@ -55,8 +62,12 @@ public class GarageController : ControllerBase
     private readonly UpdateServiceRecordHandler _updateServiceRecordHandler;
     private readonly SellGarageVehicleHandler
         _sellGarageVehicleHandler;
+    private readonly VehiclePhotoHandler _vehiclePhotoHandler;
+    private readonly IGarageImageStorage _garageImageStorage;
+    private readonly GarageVehicleLikesHandler _likesHandler;
 
     public GarageController(
+        GarageVehicleLikesHandler likesHandler,
         CreateGarageVehicleHandler createGarageVehicleHandler,
         DeleteGarageVehicleHandler deleteGarageVehicleHandler,
         AddGarageVehicleImageHandler addGarageVehicleImageHandler,
@@ -71,6 +82,7 @@ public class GarageController : ControllerBase
         GetUserGarageHandler getUserGarageHandler,
         GetGarageVehicleHandler getGarageVehicleHandler,
         GetPublicGarageHandler getPublicGarageHandler,
+        GetGarageDirectoryHandler getGarageDirectoryHandler,
         CreateModificationHandler createModificationHandler,
         DeleteModificationHandler deleteModificationHandler,
         GetModificationsHandler getModificationsHandler,
@@ -79,8 +91,13 @@ public class GarageController : ControllerBase
         DeleteServiceRecordHandler deleteServiceRecordHandler,
         GetServiceRecordsHandler getServiceRecordsHandler,
         UpdateServiceRecordHandler updateServiceRecordHandler,
-        SellGarageVehicleHandler sellGarageVehicleHandler)
+        SellGarageVehicleHandler sellGarageVehicleHandler,
+        VehiclePhotoHandler vehiclePhotoHandler,
+        IGarageImageStorage garageImageStorage)
     {
+        _likesHandler = likesHandler;
+        _vehiclePhotoHandler = vehiclePhotoHandler;
+        _garageImageStorage = garageImageStorage;
         _createGarageVehicleHandler = createGarageVehicleHandler;
         _deleteGarageVehicleHandler = deleteGarageVehicleHandler;
         _addGarageVehicleImageHandler =
@@ -98,6 +115,7 @@ public class GarageController : ControllerBase
         _getUserGarageHandler = getUserGarageHandler;
         _getGarageVehicleHandler = getGarageVehicleHandler;
         _getPublicGarageHandler = getPublicGarageHandler;
+        _getGarageDirectoryHandler = getGarageDirectoryHandler;
         _createModificationHandler = createModificationHandler;
         _deleteModificationHandler = deleteModificationHandler;
         _getModificationsHandler = getModificationsHandler;
@@ -107,6 +125,86 @@ public class GarageController : ControllerBase
         _getServiceRecordsHandler = getServiceRecordsHandler;
         _updateServiceRecordHandler = updateServiceRecordHandler;
         _sellGarageVehicleHandler = sellGarageVehicleHandler;
+    }
+
+    [HttpGet("vehicles/{vehicleId:guid}/likes")]
+    public async Task<IActionResult> GetVehicleLikes(
+        Guid vehicleId,
+        CancellationToken cancellationToken)
+    {
+        return Ok(await _likesHandler.GetStatus(
+            vehicleId,
+            cancellationToken));
+    }
+
+    [Authorize]
+    [HttpPut("vehicles/{vehicleId:guid}/likes")]
+    public async Task<IActionResult> LikeVehicle(
+        Guid vehicleId,
+        CancellationToken cancellationToken)
+    {
+        await _likesHandler.Like(vehicleId, cancellationToken);
+
+        return NoContent();
+    }
+
+    [Authorize]
+    [HttpDelete("vehicles/{vehicleId:guid}/likes")]
+    public async Task<IActionResult> UnlikeVehicle(
+        Guid vehicleId,
+        CancellationToken cancellationToken)
+    {
+        await _likesHandler.Unlike(vehicleId, cancellationToken);
+
+        return NoContent();
+    }
+
+    [Authorize]
+    [EnableRateLimiting(RateLimitPolicies.Uploads)]
+    [HttpPost("vehicles/{vehicleId:guid}/photo")]
+    [RequestSizeLimit(5 * 1024 * 1024)]
+    public async Task<IActionResult> UploadVehiclePhoto(
+        Guid vehicleId,
+        IFormFile file,
+        CancellationToken cancellationToken)
+    {
+        if (file.Length > VehiclePhotoHandler.MaxBytes)
+            return BadRequest("Image must be 4 MB or smaller.");
+
+        using var buffer = new MemoryStream();
+        await file.CopyToAsync(buffer, cancellationToken);
+
+        var url = await _vehiclePhotoHandler.Upload(
+            vehicleId,
+            buffer.ToArray(),
+            cancellationToken);
+
+        return Ok(new { imageUrl = url });
+    }
+
+    [Authorize]
+    [HttpDelete("vehicles/{vehicleId:guid}/photo")]
+    public async Task<IActionResult> RemoveVehiclePhoto(
+        Guid vehicleId,
+        CancellationToken cancellationToken)
+    {
+        await _vehiclePhotoHandler.Remove(vehicleId, cancellationToken);
+
+        return NoContent();
+    }
+
+    [HttpGet("vehicles/{vehicleId:guid}/photo")]
+    public IActionResult GetVehiclePhoto(Guid vehicleId)
+    {
+        var photo = _garageImageStorage.Open(vehicleId);
+
+        if (photo is null)
+            return NotFound();
+
+        Response.Headers.CacheControl = "public, max-age=86400";
+        Response.Headers.XContentTypeOptions = "nosniff";
+
+        return File(photo.Content, photo.ContentType);
     }
 
     [Authorize]
@@ -167,6 +265,7 @@ public class GarageController : ControllerBase
     }
 
     [Authorize]
+    [EnableRateLimiting(RateLimitPolicies.Uploads)]
     [HttpPost("vehicles/{vehicleId:guid}/images")]
     public async Task<IActionResult> AddVehicleImage(
         Guid vehicleId,
@@ -254,6 +353,20 @@ public class GarageController : ControllerBase
     {
         var result = await _getMyGarageHandler.Handle(
             new GetMyGarageQuery(),
+            cancellationToken);
+
+        return Ok(result);
+    }
+
+    [HttpGet("directory")]
+    public async Task<IActionResult> GetDirectory(
+        [FromQuery] string? search,
+        [FromQuery] int page = 1,
+        [FromQuery] int pageSize = 24,
+        CancellationToken cancellationToken = default)
+    {
+        var result = await _getGarageDirectoryHandler.Handle(
+            new GetGarageDirectoryQuery(search, page, pageSize),
             cancellationToken);
 
         return Ok(result);

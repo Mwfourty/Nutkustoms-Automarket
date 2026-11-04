@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using NtkstmsAutoMarket.Application.Common.Interfaces;
+using NtkstmsAutoMarket.Domain.Enums;
 
 namespace NtkstmsAutoMarket.Application.Features.Users.GetPublicProfile;
 
@@ -21,10 +22,13 @@ public class GetPublicProfileHandler
             .AsNoTracking()
             .Where(x =>
                 x.Id == query.UserId &&
-                x.IsActive)
+                x.IsActive &&
+                x.ProfileVisibility == ProfileVisibility.Public)
             .Select(x => new GetPublicProfileResponse
             {
                 Id = x.Id,
+                City = x.City,
+                Province = x.Province,
                 FirstName = x.FirstName,
                 LastName = x.LastName,
                 Username = x.Username,

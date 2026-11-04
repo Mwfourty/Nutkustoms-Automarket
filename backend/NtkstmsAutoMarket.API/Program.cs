@@ -32,6 +32,8 @@ using NtkstmsAutoMarket.Application.Features.Listings.ReserveListing;
 using NtkstmsAutoMarket.Application.Features.Listings.MarkListingAsSold;
 
 using NtkstmsAutoMarket.API.ExceptionHandling;
+using NtkstmsAutoMarket.API.Extensions;
+using NtkstmsAutoMarket.API.Filters;
 
 using NtkstmsAutoMarket.Application.Features.Auth.Login;
 using NtkstmsAutoMarket.Application.Features.Auth.Register;
@@ -43,14 +45,18 @@ using NtkstmsAutoMarket.Application.Features.Messaging.MarkConversationAsRead;
 using NtkstmsAutoMarket.Application.Features.Messaging.SendMessage;
 
 using NtkstmsAutoMarket.Application.Features.Garage.CreateGarageVehicle;
+using NtkstmsAutoMarket.Application.Features.Garage.Likes;
+using NtkstmsAutoMarket.Application.Features.Listings.CarOfTheWeek;
 using NtkstmsAutoMarket.Application.Features.Garage.DeleteGarageVehicle;
 using NtkstmsAutoMarket.Application.Features.Garage.Images.AddGarageVehicleImage;
+using NtkstmsAutoMarket.Application.Features.Garage.Images.VehiclePhoto;
 using NtkstmsAutoMarket.Application.Features.Garage.Images.DeleteGarageVehicleImage;
 using NtkstmsAutoMarket.Application.Features.Garage.Images.GetGarageVehicleImages;
 using NtkstmsAutoMarket.Application.Features.Garage.Images.SetPrimaryGarageVehicleImage;
 using NtkstmsAutoMarket.Application.Features.Garage.GetGarageVehicle;
 using NtkstmsAutoMarket.Application.Features.Garage.GetMyGarage;
 using NtkstmsAutoMarket.Application.Features.Garage.GetPublicGarage;
+using NtkstmsAutoMarket.Application.Features.Garage.GetGarageDirectory;
 using NtkstmsAutoMarket.Application.Features.Garage.GetUserGarage;
 using NtkstmsAutoMarket.Application.Features.Garage.SellGarageVehicle;
 using NtkstmsAutoMarket.Application.Features.Garage.Modifications.CreateModification;
@@ -73,13 +79,37 @@ using NtkstmsAutoMarket.Application.Features.Users.GetMyProfile;
 using NtkstmsAutoMarket.Application.Features.Users.GetPublicProfile;
 using NtkstmsAutoMarket.Application.Features.Users.UpdateMyProfile;
 using NtkstmsAutoMarket.Application.Features.Users.UpdateProfileImage;
+using NtkstmsAutoMarket.Application.Features.Users.SavedListings;
+using NtkstmsAutoMarket.Application.Features.Users.ProfileImage;
+using NtkstmsAutoMarket.Application.Features.Users.Account;
+using NtkstmsAutoMarket.Infrastructure.Storage;
+using System.Security.Claims;
+using NtkstmsAutoMarket.Application.Features.Users.SavedContacts;
+using NtkstmsAutoMarket.Application.Features.Auth.Logout;
+using System.IdentityModel.Tokens.Jwt;
 
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddApplication();
 
-builder.Services.AddControllers();
+builder.Services.AddControllers(options =>
+    options.Filters.Add<StringLengthGuardFilter>());
+
+builder.Services.AddRateLimitingPolicies();
+
+// Uploads cap at 5 MB; nothing legitimate needs more than this.
+builder.WebHost.ConfigureKestrel(options =>
+{
+    options.AddServerHeader = false;
+    options.Limits.MaxRequestBodySize = 8 * 1024 * 1024;
+});
+
+builder.Services.AddHsts(options =>
+{
+    options.MaxAge = TimeSpan.FromDays(365);
+    options.IncludeSubDomains = true;
+});
 
 var connectionString = builder.Configuration
     .GetConnectionString("DefaultConnection");
@@ -133,6 +163,72 @@ builder.Services.AddAuthentication(
 
                 ClockSkew = TimeSpan.Zero
             };
+
+        // Reject tokens ended by logout, a password change or deactivation, even though the JWT itself is unexpired.
+        options.Events = new JwtBearerEvents
+        {
+            // Browsers authenticate through the HttpOnly cookie; an Authorization header still wins for API clients.
+            OnMessageReceived = context =>
+            {
+                if (string.IsNullOrEmpty(context.Token) &&
+                    context.Request.Cookies.TryGetValue(AuthCookie.Name, out var cookieToken))
+                {
+                    context.Token = cookieToken;
+                }
+
+                return Task.CompletedTask;
+            },
+            OnTokenValidated = async context =>
+            {
+                var principal = context.Principal;
+                var cancellationToken = context.HttpContext.RequestAborted;
+
+                var db = context.HttpContext.RequestServices
+                    .GetRequiredService<IApplicationDbContext>();
+
+                var jti = principal?.FindFirst(
+                    JwtRegisteredClaimNames.Jti)?.Value;
+
+                if (!string.IsNullOrEmpty(jti) &&
+                    await db.RevokedTokens
+                        .AsNoTracking()
+                        .AnyAsync(x => x.Jti == jti, cancellationToken))
+                {
+                    context.Fail("Token has been revoked.");
+                    return;
+                }
+
+                var userIdClaim = principal?.FindFirst(
+                    ClaimTypes.NameIdentifier)?.Value;
+
+                if (!Guid.TryParse(userIdClaim, out var userId))
+                    return;
+
+                var account = await db.Users
+                    .AsNoTracking()
+                    .Where(x => x.Id == userId)
+                    .Select(x => new { x.IsActive, x.PasswordChangedAt })
+                    .FirstOrDefaultAsync(cancellationToken);
+
+                if (account is null || !account.IsActive)
+                {
+                    context.Fail("Account is not active.");
+                    return;
+                }
+
+                if (account.PasswordChangedAt is { } changedAt)
+                {
+                    var issuedAt = long.TryParse(
+                        principal!.FindFirst(JwtRegisteredClaimNames.Iat)?.Value,
+                        out var iat)
+                        ? iat
+                        : 0;
+
+                    if (issuedAt < new DateTimeOffset(changedAt).ToUnixTimeSeconds())
+                        context.Fail("Password was changed.");
+                }
+            }
+        };
     });
 
 builder.Services.AddAuthorization();
@@ -146,6 +242,30 @@ builder.Services.AddScoped<
 builder.Services.AddScoped<
     ITokenService,
     JwtTokenService>();
+
+builder.Services.AddSingleton<IAvatarStorage>(
+    _ => new LocalAvatarStorage(
+        Path.Combine(
+            builder.Environment.ContentRootPath,
+            "uploads",
+            "avatars")));
+
+builder.Services.AddScoped<ProfileImageHandler>();
+builder.Services.AddSingleton<IGarageImageStorage>(
+    _ => new LocalGarageImageStorage(
+        Path.Combine(
+            builder.Environment.ContentRootPath,
+            "uploads",
+            "garage")));
+builder.Services.AddScoped<VehiclePhotoHandler>();
+builder.Services.AddSingleton<IListingImageStorage>(
+    _ => new LocalListingImageStorage(
+        Path.Combine(
+            builder.Environment.ContentRootPath,
+            "uploads",
+            "listings")));
+builder.Services.AddScoped<UploadListingImageHandler>();
+builder.Services.AddScoped<AccountHandler>();
 
 builder.Services.AddScoped<CreateListingHandler>();
 builder.Services.AddScoped<GetListingsHandler>();
@@ -169,6 +289,7 @@ builder.Services.AddScoped<MarkListingAsSoldHandler>();
 builder.Services.AddScoped<RegisterHandler>();
 builder.Services.AddScoped<LoginHandler>();
 builder.Services.AddScoped<StartConversationHandler>();
+builder.Services.AddScoped<StartDirectConversationHandler>();
 builder.Services.AddScoped<GetConversationsHandler>();
 builder.Services.AddScoped<GetConversationMessagesHandler>();
 builder.Services.AddScoped<MarkConversationAsReadHandler>();
@@ -177,6 +298,11 @@ builder.Services.AddScoped<GetMyProfileHandler>();
 builder.Services.AddScoped<GetPublicProfileHandler>();
 builder.Services.AddScoped<UpdateMyProfileHandler>();
 builder.Services.AddScoped<UpdateProfileImageHandler>();
+builder.Services.AddScoped<SavedListingsHandler>();
+builder.Services.AddScoped<GarageVehicleLikesHandler>();
+builder.Services.AddScoped<CarOfTheWeekHandler>();
+builder.Services.AddScoped<SavedContactsHandler>();
+builder.Services.AddScoped<LogoutHandler>();
 builder.Services.AddScoped<CreateGarageVehicleHandler>();
 builder.Services.AddScoped<DeleteGarageVehicleHandler>();
 builder.Services.AddScoped<AddGarageVehicleImageHandler>();
@@ -189,6 +315,7 @@ builder.Services.AddScoped<GetMyGarageHandler>();
 builder.Services.AddScoped<GetUserGarageHandler>();
 builder.Services.AddScoped<GetGarageVehicleHandler>();
 builder.Services.AddScoped<GetPublicGarageHandler>();
+builder.Services.AddScoped<GetGarageDirectoryHandler>();
 builder.Services.AddScoped<SellGarageVehicleHandler>();
 builder.Services.AddScoped<CreateModificationHandler>();
 builder.Services.AddScoped<DeleteModificationHandler>();
@@ -209,7 +336,17 @@ var app = builder.Build();
 
 app.UseExceptionHandler();
 
+if (!app.Environment.IsDevelopment())
+{
+    app.UseHsts();
+    app.UseHttpsRedirection();
+}
+
+app.UseSecurityHeaders();
+
 app.UseAuthentication();
+app.UseCsrfProtection();
+app.UseRateLimiter();
 app.UseAuthorization();
 
 app.MapControllers();

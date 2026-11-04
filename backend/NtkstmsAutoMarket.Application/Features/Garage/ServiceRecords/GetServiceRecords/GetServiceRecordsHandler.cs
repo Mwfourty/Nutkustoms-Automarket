@@ -38,11 +38,8 @@ public class GetServiceRecordsHandler
             currentUserId.HasValue &&
             vehicle.OwnerId == currentUserId.Value;
 
-        if (!vehicle.IsPublic && !isOwner)
-        {
-            throw new KeyNotFoundException(
-                "Garage vehicle does not exist.");
-        }
+        await GarageVisibility.EnsureCanView(
+            _context, vehicle, currentUserId, cancellationToken);
 
         return await _context.GarageServiceRecords
             .AsNoTracking()

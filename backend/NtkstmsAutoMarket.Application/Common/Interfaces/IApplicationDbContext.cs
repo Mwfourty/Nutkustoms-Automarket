@@ -35,6 +35,14 @@ public interface IApplicationDbContext
 
     DbSet<MarketplaceMessage> MarketplaceMessages { get; }
 
+    DbSet<SavedListing> SavedListings { get; }
+
+    DbSet<GarageVehicleLike> GarageVehicleLikes { get; }
+
+    DbSet<SavedContact> SavedContacts { get; }
+
+    DbSet<RevokedToken> RevokedTokens { get; }
+
     Task<int> SaveChangesAsync(
         CancellationToken cancellationToken = default);
 }

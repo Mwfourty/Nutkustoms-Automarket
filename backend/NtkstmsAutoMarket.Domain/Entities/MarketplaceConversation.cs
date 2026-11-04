@@ -4,7 +4,8 @@ namespace NtkstmsAutoMarket.Domain.Entities;
 
 public class MarketplaceConversation : BaseEntity
 {
-    public Guid ListingId { get; private set; }
+    // Null for direct conversations started from a user's garage.
+    public Guid? ListingId { get; private set; }
 
     public Guid BuyerId { get; private set; }
 
@@ -12,7 +13,7 @@ public class MarketplaceConversation : BaseEntity
 
     public DateTime LastMessageAt { get; private set; }
 
-    public Listing Listing { get; private set; } = null!;
+    public Listing? Listing { get; private set; }
 
     public User Buyer { get; private set; } = null!;
 
@@ -23,7 +24,7 @@ public class MarketplaceConversation : BaseEntity
     }
 
     public MarketplaceConversation(
-        Guid listingId,
+        Guid? listingId,
         Guid buyerId,
         Guid sellerId)
     {

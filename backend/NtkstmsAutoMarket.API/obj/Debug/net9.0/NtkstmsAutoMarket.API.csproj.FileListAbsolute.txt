@@ -144,3 +144,10 @@ C:\Users\USER-PC\Documents\Code Projects\Micro-Saas-Projects\ntkstms-automarket\
 C:\Users\USER-PC\Documents\Code Projects\Micro-Saas-Projects\ntkstms-automarket\backend\NtkstmsAutoMarket.API\bin\Debug\net9.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
 C:\Users\USER-PC\Documents\Code Projects\Micro-Saas-Projects\ntkstms-automarket\backend\NtkstmsAutoMarket.API\bin\Debug\net9.0\Microsoft.IdentityModel.Tokens.dll
 C:\Users\USER-PC\Documents\Code Projects\Micro-Saas-Projects\ntkstms-automarket\backend\NtkstmsAutoMarket.API\bin\Debug\net9.0\System.IdentityModel.Tokens.Jwt.dll
+C:\Users\USER-PC\AppData\Local\Temp\ntk-build\appsettings.Development.json
+C:\Users\USER-PC\AppData\Local\Temp\ntk-build\appsettings.json
+C:\Users\USER-PC\AppData\Local\Temp\ntk-build\NtkstmsAutoMarket.API.staticwebassets.endpoints.json
+C:\Users\USER-PC\AppData\Local\Temp\ntk-build\NtkstmsAutoMarket.API.deps.json
+C:\Users\USER-PC\AppData\Local\Temp\ntk-build\NtkstmsAutoMarket.API.runtimeconfig.json
+C:\Users\USER-PC\AppData\Local\Temp\ntk-build\NtkstmsAutoMarket.API.dll
+C:\Users\USER-PC\AppData\Local\Temp\ntk-build\NtkstmsAutoMarket.API.pdb

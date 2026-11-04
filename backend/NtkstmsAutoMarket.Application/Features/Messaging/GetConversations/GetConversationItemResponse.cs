@@ -11,8 +11,7 @@ public class GetConversationItemResponse
     public ConversationParticipantResponse OtherParticipant { get; set; }
         = null!;
 
-    public ConversationListingResponse Listing { get; set; }
-        = null!;
+    public ConversationListingResponse? Listing { get; set; }
 
     public ConversationLatestMessageResponse? LatestMessage { get; set; }
 

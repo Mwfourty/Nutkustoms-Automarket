@@ -28,6 +28,12 @@ public class GetListingByIdResponse
 
     public DateTime CreatedAt { get; set; }
 
+    public Guid? SourceGarageVehicleId { get; set; }
+
+    public int LikeCount { get; set; }
+
+    public bool IsSaved { get; set; }
+
     public VehicleResponse? Vehicle { get; set; }
 
     public PartResponse? Part { get; set; }

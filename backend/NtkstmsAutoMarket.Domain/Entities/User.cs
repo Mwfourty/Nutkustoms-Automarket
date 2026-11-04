@@ -25,6 +25,21 @@ public class User : BaseEntity
 
     public bool IsActive { get; private set; }
 
+    public string? City { get; private set; }
+
+    public string? Province { get; private set; }
+
+    public DateTime? UsernameChangedAt { get; private set; }
+
+    public DateTime? PasswordChangedAt { get; private set; }
+
+    public ProfileVisibility ProfileVisibility { get; private set; } = ProfileVisibility.Public;
+
+    public bool AllowMessages { get; private set; } = true;
+
+    // Distinguishes a user's own deactivation (reversible by logging in) from an admin action.
+    public bool DeactivatedByUser { get; private set; }
+
     private User()
     {
     }
@@ -50,11 +65,23 @@ public class User : BaseEntity
     public void UpdateProfile(
         string firstName,
         string lastName,
-        string? phoneNumber)
+        string? phoneNumber,
+        string? city,
+        string? province)
     {
         FirstName = firstName;
         LastName = lastName;
         PhoneNumber = phoneNumber;
+        City = city;
+        Province = province;
+
+        MarkAsUpdated();
+    }
+
+    public void ChangeUsername(string username)
+    {
+        Username = username;
+        UsernameChangedAt = DateTime.UtcNow;
 
         MarkAsUpdated();
     }
@@ -62,6 +89,39 @@ public class User : BaseEntity
     public void UpdateProfileImage(string profileImageUrl)
     {
         ProfileImageUrl = profileImageUrl;
+
+        MarkAsUpdated();
+    }
+
+    public void RemoveProfileImage()
+    {
+        ProfileImageUrl = null;
+
+        MarkAsUpdated();
+    }
+
+    public void ChangePassword(string passwordHash)
+    {
+        PasswordHash = passwordHash;
+        PasswordChangedAt = DateTime.UtcNow;
+
+        MarkAsUpdated();
+    }
+
+    public void UpdatePrivacy(
+        ProfileVisibility visibility,
+        bool allowMessages)
+    {
+        ProfileVisibility = visibility;
+        AllowMessages = allowMessages;
+
+        MarkAsUpdated();
+    }
+
+    public void DeactivateByUser()
+    {
+        IsActive = false;
+        DeactivatedByUser = true;
 
         MarkAsUpdated();
     }
@@ -83,6 +143,7 @@ public class User : BaseEntity
     public void Reactivate()
     {
         IsActive = true;
+        DeactivatedByUser = false;
 
         MarkAsUpdated();
     }

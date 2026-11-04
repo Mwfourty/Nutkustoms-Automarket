@@ -23,6 +23,15 @@ public class JwtTokenService : ITokenService
         var claims = new List<Claim>
         {
             new(
+                JwtRegisteredClaimNames.Jti,
+                Guid.NewGuid().ToString("N")),
+
+            new(
+                JwtRegisteredClaimNames.Iat,
+                DateTimeOffset.UtcNow.ToUnixTimeSeconds().ToString(),
+                ClaimValueTypes.Integer64),
+
+            new(
                 ClaimTypes.NameIdentifier,
                 user.Id.ToString()),
 

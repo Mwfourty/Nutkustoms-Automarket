@@ -4,4 +4,7 @@ public record UpdateMyProfileResult(
     Guid UserId,
     string FirstName,
     string LastName,
-    string? PhoneNumber);
+    string? PhoneNumber,
+    string Username,
+    string? City,
+    string? Province);

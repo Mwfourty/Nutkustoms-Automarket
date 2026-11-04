@@ -25,14 +25,13 @@ public class GetGarageVehicleHandler
 
         var vehicle = await _context.GarageVehicles
             .AsNoTracking()
-            .Where(x =>
-                x.Id == query.VehicleId &&
+            .Where(x => x.Id == query.VehicleId &&
                 (
                     x.IsPublic ||
-                    (
-                        currentUserId.HasValue &&
-                        x.OwnerId == currentUserId.Value
-                    )
+                    (currentUserId.HasValue && x.OwnerId == currentUserId.Value) ||
+                    _context.Listings.Any(listing =>
+                        listing.SourceGarageVehicleId == x.Id &&
+                        listing.Status == ListingStatus.Active)
                 ))
             .Select(x => new GetGarageVehicleResponse
             {
